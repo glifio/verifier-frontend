@@ -52,10 +52,10 @@ export default () => {
   }
   return (
     <Box
-      width='100%'
       display='flex'
       flexDirection='column'
       justifyContent='space-between'
+      maxWidth='480px'
       height='100%'
     >
       <Box display='flex' flexDirection='row' alignItems='center'>
@@ -83,12 +83,20 @@ export default () => {
             Enter a Filecoin address to check its verified Filecoin storage
             allowance.
           </Text>
-          <Form onSubmit={onSubmit}>
+          <Form
+            onSubmit={onSubmit}
+            display='flex'
+            flexDirection='row'
+            flexWrap='wrap'
+            alignContent='center'
+            justifyContent='flex-start'
+          >
             <Box
               display='flex'
               flexDirection='column'
               justifyContent='flex-start'
               width='100%'
+              maxWidth={12}
             >
               <InputLabelBase htmlFor='fil-address'>
                 Your FIL Address
@@ -111,13 +119,7 @@ export default () => {
                 </Label>
               )}
             </Box>
-            <Box height={2} />
-            <Button
-              type='submit'
-              title='Submit'
-              variant='secondary'
-              width='100%'
-            >
+            <Button type='submit' title='Submit' variant='secondary'>
               Check
             </Button>
           </Form>
