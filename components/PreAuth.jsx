@@ -11,7 +11,7 @@ export default () => {
           glyphAcronym='Vr'
           title='Verify'
         />
-        <Text>Link your GitHub account to get verified Filecoin storage.</Text>
+        <Text>Connect to your GitHub account to begin.</Text>
       </Box>
       <Box
         display='flex'
