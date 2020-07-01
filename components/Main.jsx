@@ -18,7 +18,7 @@ export default () => {
   const { jwt } = useJwt()
   return (
     <>
-      <Box p={[3, 5]} minHeight='85vh'>
+      <Box p={[3, 5]}>
         <Box
           display='flex'
           flexDirection='column'
@@ -46,17 +46,28 @@ export default () => {
               </StyledATag>
             </MenuItem>
           </Menu>
-          <Box display='flex' flexDirection='column' mt={4}>
+          <Box
+            display='flex'
+            flexDirection='column'
+            mt={4}
+            alignSelf='center'
+            alignItems='center'
+          >
             <Title fontSize={5}>Verify your Filecoin storage</Title>
             <Text mt={1} fontSize={4}>
               Verified storage is cheaper for you to store and maintain.
             </Text>
           </Box>
         </Box>
-        <Box display='flex' flexDirection='row' flexWrap='wrap'>
+        <Box
+          display='flex'
+          flexDirection='row'
+          flexWrap='wrap'
+          justifyContent='center'
+        >
           <Card
             p={3}
-            my={3}
+            m={3}
             border={0}
             borderRadius={2}
             borderWidth={1}
@@ -74,9 +85,8 @@ export default () => {
             {jwt ? <PostAuth /> : <PreAuth />}
           </Card>
           <Card
-            flexGrow='1'
             p={3}
-            my={[0, 2, 3]}
+            m={3}
             border={0}
             overflow='hidden'
             display='flex'

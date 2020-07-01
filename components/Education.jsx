@@ -12,7 +12,17 @@ const QA = ({ question, answers }) => (
 )
 
 export default () => (
-  <Box id='help' width='100%' bg='background.screen' py={4} px={[4, 5]}>
+  <Box
+    id='help'
+    width='100%'
+    bg='background.screen'
+    flexGrow={2}
+    py={4}
+    px={[4, 5]}
+    display='flex'
+    justifyContent='space-between'
+    flexDirection='column'
+  >
     <Box
       display='flex'
       flexDirection='row'
