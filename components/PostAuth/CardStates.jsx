@@ -45,7 +45,13 @@ Confirming.defaultProps = {
 export const Confirmed = ({ address, cid }) => {
   return (
     <>
-      <Text>All set! {address} has 8 GB of verified Filecoin data.</Text>
+      <Text>
+        All set!{' '}
+        <Text display='inline' color='core.primary'>
+          {address}
+        </Text>{' '}
+        has 8 GB of verified Filecoin data.
+      </Text>
       <StyledATag
         rel='noopener noreferrer'
         target='_blank'
