@@ -15,6 +15,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-grow: 1;
 `
 
 export default () => {
@@ -42,45 +43,65 @@ export default () => {
     setLoading(false)
   }
   return (
-    <Box display='flex' flexDirection='column' width='700px' minWidth='700px'>
+    <Box
+      display='flex'
+      flexDirection='column'
+      m={3}
+      mt={[4, 6]}
+      width='100%'
+      maxWidth={14}
+    >
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
         Enter an address to check its current verified data allowance
       </Text>
       <Card
         p={3}
-        m={3}
-        mt={1}
+        mt={3}
         border={0}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        width='100%'
         bg='background.screen'
         boxShadow={2}
       >
-        <Box display='flex' flexDirection='row' justifyContent='space-between'>
+        <Box
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-between'
+          flexWrap='wrap'
+        >
           <StepHeader
             glyphAcronym='Ck'
             showStepper={false}
             title=''
             loading={loading}
             width='auto'
-            mr={2}
           />
           <Form onSubmit={onSubmit}>
-            <Input.Base
-              height={7}
-              width={12}
-              overflow='scroll'
-              borderRadius={2}
-              placeholder='f1OwL...'
-              value={filAddress}
-              onChange={(e) => {
-                setErr('')
-                setFilAddress(e.target.value)
-              }}
-            />
-            <Button type='submit' title='Check' variant='secondary' ml={3} />
+            <Box display='flex' flexGrow='1' flexWrap='wrap'>
+              <Input.Base
+                width='auto'
+                flexShrink='1'
+                height={7}
+                minWidth={11}
+                mr={2}
+                mt={[2, 2, 0]}
+                overflow='scroll'
+                borderRadius={2}
+                placeholder='f1OwL...'
+                value={filAddress}
+                onChange={(e) => {
+                  setErr('')
+                  setFilAddress(e.target.value)
+                }}
+              />
+              <Button
+                type='submit'
+                title='Check'
+                variant='secondary'
+                mt={[2, 2, 0]}
+              />
+            </Box>
           </Form>
         </Box>
       </Card>

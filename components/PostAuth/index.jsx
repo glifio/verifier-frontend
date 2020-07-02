@@ -22,12 +22,13 @@ const Form = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-grow: 1;
 `
 
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
-  if (error) return 'Error'
+  if (error) return 'Oops. Please try again.'
   if (confirming) return 'Confirming...'
-  if (confirmed) return 'Verified'
+  if (confirmed) return 'You have successfully verified'
   if (!confirming && !confirmed) return ''
 }
 
@@ -110,7 +111,7 @@ export default () => {
   }
 
   return (
-    <Box display='flex' flexDirection='column' width='700px' minWidth='700px'>
+    <Box display='flex' flexDirection='column' m={3} width='100%' maxWidth={14}>
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
         {!confirmed &&
           !confirming &&
@@ -122,41 +123,52 @@ export default () => {
       </Text>
       <Card
         p={3}
-        m={3}
-        mt={1}
+        mt={3}
         border={0}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        width='100%'
-        bg='background.screen'
+        minWidth={11}
+        bg={
+          confirmed
+            ? 'status.success.background'
+            : err
+            ? 'status.fail.background'
+            : 'background.screen'
+        }
         boxShadow={2}
       >
-        <Box display='flex' flexDirection='row' justifyContent='space-between'>
+        <Box display='flex' flexWrap='wrap' justifyContent='space-between'>
           <StepHeader
             showStepper={false}
-            glyphAcronym='Vr'
+            glyphAcronym={err ? 'Er' : 'Vr'}
             loading={confirming}
             title=''
             width='auto'
-            mr={2}
-            my={2}
             title={StepHeaderTitle({ confirmed, confirming, error: err })}
           />
           {!confirming && !confirmed && !err && (
             <Form onSubmit={onSubmit}>
-              <Input.Base
-                height={7}
-                width={12}
-                placeholder='f1OwL...'
-                value={filAddress}
-                onChange={(e) => {
-                  setErr('')
-                  setFilAddress(e.target.value)
-                }}
-                borderRadius={2}
-              />
-              <Button type='submit' title='Verify' ml={3} />
+              <Box display='flex' flexGrow='1' flexWrap='wrap'>
+                <Input.Base
+                  width='auto'
+                  flexShrink='1'
+                  height={7}
+                  minWidth={11}
+                  mr={2}
+                  mt={[2, 2, 0]}
+                  overflow='scroll'
+                  borderRadius={2}
+                  placeholder='f1OwL...'
+                  value={filAddress}
+                  onChange={(e) => {
+                    setErr('')
+                    setFilAddress(e.target.value)
+                  }}
+                  borderRadius={2}
+                />
+                <Button mt={[2, 2, 0]} type='submit' title='Verify' />
+              </Box>
             </Form>
           )}
           {err && <Button variant='secondary' title='Retry' onClick={reset} />}
