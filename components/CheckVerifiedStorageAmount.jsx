@@ -42,7 +42,14 @@ export default () => {
     setLoading(false)
   }
   return (
-    <Box display='flex' flexDirection='column' m={3} width='100%' maxWidth={14}>
+    <Box
+      display='flex'
+      flexDirection='column'
+      m={3}
+      mt={[4, 6]}
+      width='100%'
+      maxWidth={14}
+    >
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
         Enter an address to check its current verified data allowance
       </Text>
