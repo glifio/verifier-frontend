@@ -17,7 +17,7 @@ import { useJwt } from '../lib/JwtHandler'
 export default () => {
   const { jwt } = useJwt()
   return (
-    <Box p={[3, 5]} mb={[0, 6]}>
+    <Box p={[2, 3, 5]} mb={[0, 6]}>
       <Box
         display='flex'
         flexDirection='column'
