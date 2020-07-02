@@ -37,7 +37,7 @@ export default () => {
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [err, setErr] = useState('')
-  const { jwt } = useJwt()
+  const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
   useEffect(() => {
@@ -103,6 +103,12 @@ export default () => {
     }
   }
 
+  const reset = () => {
+    setErr('')
+    setFilAddress('')
+    removeJwt('')
+  }
+
   return (
     <Box display='flex' flexDirection='column' width='700px' minWidth='700px'>
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
@@ -153,6 +159,7 @@ export default () => {
               <Button type='submit' title='Verify' ml={3} />
             </Form>
           )}
+          {err && <Button variant='secondary' title='Retry' onClick={reset} />}
         </Box>
       </Card>
       <Box p={3} pt={0} mx={3}>
