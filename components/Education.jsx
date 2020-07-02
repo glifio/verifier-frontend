@@ -1,7 +1,7 @@
 import { Box, StyledATag, Title, Text } from './Shared'
 
 const QA = ({ question, answers }) => (
-  <Box m={4} maxWidth={14}>
+  <Box m={4} maxWidth={12}>
     <Title color='core.primary'>{question}</Title>
     {answers.map((answer, i) => (
       <Text key={i} mt={4} color='core.darkgray'>
@@ -21,6 +21,7 @@ export default () => (
     px={[4, 5]}
     display='flex'
     justifyContent='space-between'
+    alignItems='center'
     flexDirection='column'
   >
     <Box
@@ -28,7 +29,8 @@ export default () => (
       flexDirection='row'
       flexWrap='wrap'
       width='100%'
-      justifyContent='space-between'
+      maxWidth={19}
+      justifyContent={['center', 'center', 'space-between']}
     >
       <QA
         question='What is a Filecoin verified client?'
