@@ -132,15 +132,13 @@ export default () => {
         }
         boxShadow={2}
       >
-        <Box display='flex' flexDirection='row' justifyContent='space-between'>
+        <Box display='flex' flexWrap='wrap' justifyContent='space-between'>
           <StepHeader
             showStepper={false}
             glyphAcronym={err ? 'Er' : 'Vr'}
             loading={confirming}
             title=''
             width='auto'
-            mr={2}
-            my={2}
             title={StepHeaderTitle({ confirmed, confirming, error: err })}
           />
           {!confirming && !confirmed && !err && (
@@ -163,7 +161,7 @@ export default () => {
                   }}
                   borderRadius={2}
                 />
-                <Button type='submit' title='Verify' />
+                <Button mt={[2, 2, 0]} type='submit' title='Verify' />
               </Box>
             </Form>
           )}
