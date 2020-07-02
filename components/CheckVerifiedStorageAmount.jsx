@@ -76,7 +76,6 @@ export default () => {
             title=''
             loading={loading}
             width='auto'
-            mr={2}
           />
           <Form onSubmit={onSubmit}>
             <Box display='flex' flexGrow='1' flexWrap='wrap'>
