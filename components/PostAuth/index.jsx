@@ -104,7 +104,7 @@ export default () => {
   }
 
   return (
-    <Box display='flex' flexDirection='column' width='700px' minWidth='700px'>
+    <Box display='flex' flexDirection='column' width='100%' maxWidth={14}>
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
         {!confirmed &&
           !confirming &&

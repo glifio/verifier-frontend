@@ -3,19 +3,18 @@ import { Box, StepHeader, Text, Card, IconGitHub } from './Shared'
 
 export default () => {
   return (
-    <Box display='flex' flexDirection='column' width='700px' minWidth='700px'>
+    <Box display='flex' flexDirection='column' m={3} width='100%' maxWidth={14}>
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
         Connect to GitHub to begin
       </Text>
       <Card
         p={3}
-        m={3}
-        mt={1}
+        mt={3}
         border={0}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        width='100%'
+        minWidth={11}
         bg='background.screen'
         boxShadow={2}
       >
