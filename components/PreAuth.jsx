@@ -33,8 +33,8 @@ export default () => {
             justifyContent='center'
             alignItems='center'
             alignSelf='center'
-            border={1}
             borderRadius={2}
+            backgroundColor='buttons.primary.background'
             css={`
               transition: 0.24s ease-in-out;
               cursor: pointer;
@@ -46,7 +46,7 @@ export default () => {
               window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.GITHUB_REDIRECT_URL}&state=${process.env.OAUTH_STATE_STRING}`
             }}
           >
-            <IconGitHub size={5} ml={2} />
+            <IconGitHub size={5} ml={2} fill='white' color='white' />
             <Text mx={3} my={3}>
               Start
             </Text>
