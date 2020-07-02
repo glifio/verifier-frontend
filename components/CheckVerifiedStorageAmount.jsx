@@ -15,6 +15,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-grow: 1;
 `
 
 export default () => {
@@ -77,13 +78,7 @@ export default () => {
             width='auto'
             mr={2}
           />
-          <Form
-            onSubmit={onSubmit}
-            css={`
-              display: flex;
-              flex-grow: 1;
-            `}
-          >
+          <Form onSubmit={onSubmit}>
             <Box display='flex' flexGrow='1' flexWrap='wrap'>
               <Input.Base
                 width='auto'

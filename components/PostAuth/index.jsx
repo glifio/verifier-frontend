@@ -22,6 +22,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-grow: 1;
 `
 
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
@@ -104,7 +105,7 @@ export default () => {
   }
 
   return (
-    <Box display='flex' flexDirection='column' width='100%' maxWidth={14}>
+    <Box display='flex' flexDirection='column' m={3} width='100%' maxWidth={14}>
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
         {!confirmed &&
           !confirming &&
@@ -116,13 +117,12 @@ export default () => {
       </Text>
       <Card
         p={3}
-        m={3}
-        mt={1}
+        mt={3}
         border={0}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        width='100%'
+        minWidth={11}
         bg='background.screen'
         boxShadow={2}
       >
@@ -139,18 +139,26 @@ export default () => {
           />
           {!confirming && !confirmed && !err && (
             <Form onSubmit={onSubmit}>
-              <Input.Base
-                height={7}
-                width={12}
-                placeholder='f1OwL...'
-                value={filAddress}
-                onChange={(e) => {
-                  setErr('')
-                  setFilAddress(e.target.value)
-                }}
-                borderRadius={2}
-              />
-              <Button type='submit' title='Verify' ml={3} />
+              <Box display='flex' flexGrow='1' flexWrap='wrap'>
+                <Input.Base
+                  width='auto'
+                  flexShrink='1'
+                  height={7}
+                  minWidth={11}
+                  mr={2}
+                  mt={[2, 2, 0]}
+                  overflow='scroll'
+                  borderRadius={2}
+                  placeholder='f1OwL...'
+                  value={filAddress}
+                  onChange={(e) => {
+                    setErr('')
+                    setFilAddress(e.target.value)
+                  }}
+                  borderRadius={2}
+                />
+                <Button type='submit' title='Verify' />
+              </Box>
             </Form>
           )}
         </Box>
