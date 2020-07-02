@@ -10,7 +10,8 @@ import {
   Text,
   Input,
   InputLabelBase,
-  Label
+  Label,
+  Card
 } from '../Shared'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
@@ -19,11 +20,8 @@ import { getVerification } from '../../utils/storage'
 
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
-  flex-grow: 1;
-  justify-content: space-around;
 `
 
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
@@ -106,64 +104,55 @@ export default () => {
   }
 
   return (
-    <>
-      <Box
+    <Box display='flex' flexDirection='column' width='700px' minWidth='700px'>
+      <Card
+        p={3}
+        m={3}
+        border={0}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        height='100%'
+        width='100%'
+        bg='background.screen'
+        boxShadow={2}
       >
-        <StepHeader
-          currentStep={confirming ? 3 : 2}
-          showStepper={!confirmed}
-          totalSteps={3}
-          glyphAcronym='Vr'
-          loading={confirming}
-          title={StepHeaderTitle({ confirmed, confirming, error: err })}
-        />
+        <Box display='flex' flexDirection='row' justifyContent='space-between'>
+          <StepHeader
+            showStepper={false}
+            glyphAcronym='Vr'
+            loading={confirming}
+            title=''
+            width='auto'
+            mr={2}
+            // title={StepHeaderTitle({ confirmed, confirming, error: err })}
+          />
+          <Form onSubmit={onSubmit}>
+            <Input.Base
+              height={7}
+              width={12}
+              placeholder='f1OwL...'
+              value={filAddress}
+              onChange={(e) => {
+                setErr('')
+                setFilAddress(e.target.value)
+              }}
+              borderRadius={2}
+            />
+            <Button type='submit' title='Verify' ml={3} />
+          </Form>
+        </Box>
+      </Card>
+      <Box p={3} pt={0} mx={3}>
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
           <Confirmed address={filAddress} cid={cidToConfirm} />
         )}
-        {!confirming && !confirmed && (
-          <>
-            <Text>
-              Enter the Filecoin address to grant verified Filecoin storage.
-            </Text>
-            <Form onSubmit={onSubmit}>
-              <Box
-                display='flex'
-                flexDirection='column'
-                justifyContent='flex-start'
-                width='100%'
-              >
-                <InputLabelBase htmlFor='fil-address'>
-                  Your FIL Address
-                </InputLabelBase>
-                <Box height={1} />
-                <Input.Base
-                  id='fil-address'
-                  height={7}
-                  placeholder='f1OwL...'
-                  value={filAddress}
-                  onChange={(e) => {
-                    setErr('')
-                    setFilAddress(e.target.value)
-                  }}
-                  borderRadius={2}
-                />
-                {err && (
-                  <Label color='status.fail.background' mt={3} mb={0}>
-                    {err}
-                  </Label>
-                )}
-              </Box>
-              <Box height={2} />
-              <Button type='submit' title='Verify' />
-            </Form>
-          </>
+        {err && (
+          <Label color='status.fail.background' mt={3} mb={0}>
+            {err}
+          </Label>
         )}
       </Box>
-    </>
+    </Box>
   )
 }
