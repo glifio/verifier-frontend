@@ -25,7 +25,12 @@ export default () => {
         alignContent='center'
         mb={4}
       >
-        <Menu display='flex' justifyContent='space-between' width='100%'>
+        <Menu
+          display='flex'
+          justifyContent='space-between'
+          width='100%'
+          alignItems='center'
+        >
           <MenuItem>
             <Box
               display='flex'
@@ -51,6 +56,7 @@ export default () => {
           mt={4}
           alignSelf='center'
           alignItems='center'
+          textAlign='center'
         >
           <Title fontSize={5}>Verify your Filecoin storage</Title>
           <Text mt={[2, 4]} fontSize={4} textAlign='center'>
