@@ -18,7 +18,7 @@ export default () => {
         bg='background.screen'
         boxShadow={2}
       >
-        <Box display='flex' flexDirection='row' justifyContent='space-between'>
+        <Box display='flex' justifyContent='space-between'>
           <StepHeader
             currentStep={1}
             totalSteps={3}
