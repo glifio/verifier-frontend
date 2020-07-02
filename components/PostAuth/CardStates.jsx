@@ -21,7 +21,7 @@ export const Confirming = ({ cid, err }) => {
           target='_blank'
           href={`https://filscan.io/#/message/detail?cid=${cid}`}
         >
-          <Label color='core,primary'>View transaction on Filscan</Label>
+          <Label color='core.primary'>View transaction on Filscan</Label>
         </StyledATag>
         {err && (
           <Label color='status.fail.background' mt={3} mb={0}>
