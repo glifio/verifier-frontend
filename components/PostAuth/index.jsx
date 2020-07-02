@@ -28,7 +28,7 @@ const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (error) return 'Error'
   if (confirming) return 'Confirming...'
   if (confirmed) return 'Verified'
-  if (!confirming && !confirmed) return 'Verify'
+  if (!confirming && !confirmed) return ''
 }
 
 export default () => {
@@ -105,9 +105,19 @@ export default () => {
 
   return (
     <Box display='flex' flexDirection='column' width='700px' minWidth='700px'>
+      <Text color='core.darkgray' textAlign='center' m='0' p='0'>
+        {!confirmed &&
+          !confirming &&
+          !err &&
+          'Enter an address to grant an 8GB verified data allowance'}
+        {confirming && '.  .  .'}
+        {confirmed && 'Niceee, transaction success!'}
+        {err && 'Uh oh'}
+      </Text>
       <Card
         p={3}
         m={3}
+        mt={1}
         border={0}
         display='flex'
         flexDirection='column'
@@ -124,22 +134,25 @@ export default () => {
             title=''
             width='auto'
             mr={2}
-            // title={StepHeaderTitle({ confirmed, confirming, error: err })}
+            my={2}
+            title={StepHeaderTitle({ confirmed, confirming, error: err })}
           />
-          <Form onSubmit={onSubmit}>
-            <Input.Base
-              height={7}
-              width={12}
-              placeholder='f1OwL...'
-              value={filAddress}
-              onChange={(e) => {
-                setErr('')
-                setFilAddress(e.target.value)
-              }}
-              borderRadius={2}
-            />
-            <Button type='submit' title='Verify' ml={3} />
-          </Form>
+          {!confirming && !confirmed && !err && (
+            <Form onSubmit={onSubmit}>
+              <Input.Base
+                height={7}
+                width={12}
+                placeholder='f1OwL...'
+                value={filAddress}
+                onChange={(e) => {
+                  setErr('')
+                  setFilAddress(e.target.value)
+                }}
+                borderRadius={2}
+              />
+              <Button type='submit' title='Verify' ml={3} />
+            </Form>
+          )}
         </Box>
       </Card>
       <Box p={3} pt={0} mx={3}>

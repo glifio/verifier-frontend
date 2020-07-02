@@ -43,9 +43,13 @@ export default () => {
   }
   return (
     <Box display='flex' flexDirection='column' width='700px' minWidth='700px'>
+      <Text color='core.darkgray' textAlign='center' m='0' p='0'>
+        Enter an address to check its current verified data allowance
+      </Text>
       <Card
         p={3}
         m={3}
+        mt={1}
         border={0}
         display='flex'
         flexDirection='column'
