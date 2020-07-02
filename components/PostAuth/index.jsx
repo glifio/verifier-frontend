@@ -26,9 +26,9 @@ const Form = styled.form`
 `
 
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
-  if (error) return 'Error'
+  if (error) return 'Oops. Please try again.'
   if (confirming) return 'Confirming...'
-  if (confirmed) return 'Verified'
+  if (confirmed) return 'You have successfully verified'
   if (!confirming && !confirmed) return ''
 }
 
@@ -123,13 +123,19 @@ export default () => {
         flexDirection='column'
         justifyContent='space-between'
         minWidth={11}
-        bg='background.screen'
+        bg={
+          confirmed
+            ? 'status.success.background'
+            : err
+            ? 'status.fail.background'
+            : 'background.screen'
+        }
         boxShadow={2}
       >
         <Box display='flex' flexDirection='row' justifyContent='space-between'>
           <StepHeader
             showStepper={false}
-            glyphAcronym='Vr'
+            glyphAcronym={err ? 'Er' : 'Vr'}
             loading={confirming}
             title=''
             width='auto'
