@@ -17,7 +17,7 @@ import { useJwt } from '../lib/JwtHandler'
 export default () => {
   const { jwt } = useJwt()
   return (
-    <Box p={[3, 5]}>
+    <Box p={[3, 5]} mb={[0, 6]}>
       <Box
         display='flex'
         flexDirection='column'
@@ -53,16 +53,17 @@ export default () => {
           alignItems='center'
         >
           <Title fontSize={5}>Verify your Filecoin storage</Title>
-          <Text mt={1} fontSize={4}>
+          <Text mt={[2, 4]} fontSize={4} textAlign='center'>
             Verified storage is cheaper for you to store and maintain.
           </Text>
         </Box>
       </Box>
       <Box
         display='flex'
-        flexDirection='row'
         flexWrap='wrap'
         justifyContent='space-evenly'
+        maxWidth={19}
+        margin='auto'
       >
         {jwt ? <PostAuth /> : <PreAuth />}
         <CheckVerifiedStorageAmount />
