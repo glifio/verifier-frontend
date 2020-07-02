@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Main from '../components/Main'
 import Education from '../components/Education'
+import Footer from '../components/Footer'
 
 const Layout = styled.div`
   display: flex;
@@ -13,6 +14,7 @@ export default function Home() {
     <Layout>
       <Main />
       <Education />
+      <Footer />
     </Layout>
   )
 }

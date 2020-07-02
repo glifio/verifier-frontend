@@ -63,6 +63,7 @@ export default () => {
         flexDirection='row'
         flexWrap='wrap'
         justifyContent='space-evenly'
+        height='30vh'
       >
         {jwt ? <PostAuth /> : <PreAuth />}
         <CheckVerifiedStorageAmount />

@@ -1,7 +1,7 @@
 import { Box, StyledATag, Title, Text } from './Shared'
 
 const QA = ({ question, answers }) => (
-  <Box m={4} maxWidth={12}>
+  <Box m={4} maxWidth={14}>
     <Title color='core.primary'>{question}</Title>
     {answers.map((answer, i) => (
       <Text key={i} mt={4} color='core.darkgray'>
@@ -62,17 +62,6 @@ export default () => (
           'If you’re looking to store larger amounts of data on Filecoin, there are many verifiers who can grant larger data caps. A list of verifiers will be added below when it’s available.'
         ]}
       />
-    </Box>
-    <Box display='flex' alignItems='center' justifyContent='center'>
-      <Text m={0}>Made by</Text>
-      <StyledATag
-        ml={2}
-        href='https://www.openworklabs.com'
-        textAlign='right'
-        color='core.primary'
-      >
-        OWL
-      </StyledATag>
     </Box>
   </Box>
 )
