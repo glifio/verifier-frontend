@@ -45,9 +45,9 @@ export default () => {
               <IconGlif width='48px' height='48px' fill='white' />
             </Box>
           </MenuItem>
-          <MenuItem>
+          {/* <MenuItem>
             <NodeConnectedGlyph apiAddress={process.env.LOTUS_NODE_JSONRPC} />
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
         <Box
           display='flex'
