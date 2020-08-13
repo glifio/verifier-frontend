@@ -3,7 +3,7 @@ import { string } from 'prop-types'
 import { Box, Text, Label, StyledATag } from '../Shared'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
-export const Confirming = ({ cid, err }) => {
+export const Confirming = ({ err }) => {
   return (
     <>
       <Text>
@@ -16,13 +16,6 @@ export const Confirming = ({ cid, err }) => {
         justifyContent='flex-start'
         width='100%'
       >
-        <StyledATag
-          rel='noopener noreferrer'
-          target='_blank'
-          href={`https://filscan.io/#/message/detail?cid=${cid}`}
-        >
-          <Label color='core.primary'>View transaction on Filscan</Label>
-        </StyledATag>
         {err && (
           <Label color='status.fail.background' mt={3} mb={0}>
             {err}
@@ -34,7 +27,6 @@ export const Confirming = ({ cid, err }) => {
 }
 
 Confirming.propTypes = {
-  cid: string.isRequired,
   err: string
 }
 

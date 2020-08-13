@@ -12,6 +12,7 @@ module.exports = (phase) => {
         VERIFIER_URL: 'https://verifier.glif.io',
         OAUTH_STATE_STRING: 'verifier',
         LOTUS_NODE_JSONRPC: 'https://dev.node.glif.io/01/rpc/v0',
+        NETWORK_IDENTIFIER: 'space-race',
         IS_PROD: true
       }
     }
@@ -24,6 +25,7 @@ module.exports = (phase) => {
       VERIFIER_URL: 'http://localhost:8080',
       OAUTH_STATE_STRING: 'verifier',
       LOTUS_NODE_JSONRPC: 'https://node.glif.io/02/rpc/v0',
+      NETWORK_IDENTIFIER: 'local',
       IS_PROD: false
     }
   }

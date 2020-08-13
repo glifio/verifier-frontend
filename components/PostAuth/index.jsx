@@ -131,16 +131,18 @@ export default () => {
     removeVerificationCid()
   }
 
+  const calculateHeaderText = () => {
+    if (!confirmed && !confirming && !err)
+      return 'Enter an address to grant an 8GB verified data allowance'
+    if (confirming) return '.  .  .'
+    if (confirmed) return 'Niceee, transaction success!'
+    if (err) return 'Uh oh'
+  }
+
   return (
     <Box display='flex' flexDirection='column' m={3} width='100%' maxWidth={14}>
       <Text color='core.darkgray' textAlign='center' m='0' p='0'>
-        {!confirmed &&
-          !confirming &&
-          !err &&
-          'Enter an address to grant an 8GB verified data allowance'}
-        {confirming && '.  .  .'}
-        {confirmed && 'Niceee, transaction success!'}
-        {err && 'Uh oh'}
+        {calculateHeaderText()}
       </Text>
       <Card
         p={3}
