@@ -2,7 +2,7 @@ import { Box, Title, Text } from './Shared'
 
 const QA = ({ question, answers }) => (
   <Box m={4} maxWidth={12}>
-    <Title color='core.primary'>{question}</Title>
+    <Title color='core.nearblack'>{question}</Title>
     {answers.map((answer, i) => (
       <Text key={i} mt={4} color='core.darkgray'>
         {answer}
