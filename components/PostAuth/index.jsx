@@ -17,7 +17,7 @@ import Loading from '../Shared/LoaderGlyph'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
-import { getVerification } from '../../utils/storage'
+import { getVerification, removeVerificationCid } from '../../utils/storage'
 import reportError from '../../utils/reportError'
 
 const Form = styled.form`
@@ -129,11 +129,13 @@ export default () => {
     setErr('')
     setFilAddress('')
     removeJwt('')
+    removeVerificationCid()
   }
 
   const back = () => {
     setErr('')
     setFilAddress('')
+    removeVerificationCid()
     setCidToConfirm('')
     setConfirmed(false)
   }
