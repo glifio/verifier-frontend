@@ -146,7 +146,7 @@ const theme = {
       fontSize: 'calc(48px + (48 - 32) * (100vw - 360px) / (1440 - 360))',
       fontWeight: 400,
       margin: 0,
-      lineHeight: 'solid',
+      lineHeight: 'title',
       fontFamily: 'RT-Alias-Grotesk'
     },
     bigTitle: {
