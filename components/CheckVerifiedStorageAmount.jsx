@@ -79,22 +79,43 @@ export default () => {
     <Box
       display='flex'
       flexDirection='column'
-      m={3}
-      mt={[4, 6]}
+      p={3}
+      mt={5}
+      minHeight={10}
       width='100%'
-      maxWidth={14}
+      maxWidth={13}
+      alignItems='center'
+      justifyContent='center'
     >
-      <Text color='core.darkgray' textAlign='center' m='0' p='0'>
-        Enter an address to check its verification status
-      </Text>
+      <Box
+        display='flex'
+        width='100%'
+        justifyContent='space-between'
+        flexWrap='wrap'
+        mb={3}
+      >
+        <Text
+          color='core.nearblack'
+          textAlign='center'
+          p='0'
+          m={0}
+          textTransform='uppercase'
+        >
+          CHECK
+        </Text>
+        <Text color='core.darkgray' textAlign='left' p='0' m={0}>
+          Enter an address to check its status
+        </Text>
+      </Box>
       <Card
-        p={3}
-        mt={3}
+        p={0}
         border={0}
+        width='100%'
+        maxWidth={13}
+        height={7}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        bg='background.screen'
         boxShadow={2}
       >
         <Box
@@ -103,26 +124,22 @@ export default () => {
           justifyContent='space-between'
           flexWrap='wrap'
         >
-          <StepHeader
-            glyphAcronym='Ck'
-            showStepper={false}
-            title=''
-            loading={loading}
-            width='auto'
-          />
+        
           <Form onSubmit={onSubmit}>
-            <Box display='flex' flexGrow='1' flexWrap='wrap'>
+          <Box
+              position='relative'
+              display='flex'
+              flexGrow='1'
+              flexWrap='wrap'
+              alignItems='center'
+            >
               <InputLabelBase display='none' htmlFor='check-fil-address' />
               <Input.Base
                 id='check-fil-address'
-                width='auto'
+                width='100%'
                 flexShrink='1'
-                height={7}
-                minWidth={11}
-                mr={2}
-                mt={[2, 2, 0]}
+                pr={8}
                 overflow='scroll'
-                borderRadius={2}
                 placeholder='t1OwL...'
                 value={filAddress}
                 onChange={(e) => {
@@ -133,20 +150,24 @@ export default () => {
                 }}
               />
               <Button
+                position="absolute"
+                right='0'
                 type='submit'
                 title='Check'
                 variant='secondary'
-                mt={[2, 2, 0]}
+                mx={2}
+                px={4}
                 disabled={!filAddress}
+                bg='transparent'
               />
             </Box>
           </Form>
         </Box>
       </Card>
-      <Box p={3} pt={0} mx={3}>
+      <Box pt={0} mx={3} minHeight={4} mt={3}>
         {remainingBytes && !err && (
           <>
-            <Text color='core.primary'>
+            <Text color='core.black'>
               {filAddress} has {remainingBytes} bytes of verified Filecoin
               storage left.
             </Text>
@@ -156,11 +177,9 @@ export default () => {
             </Text>
           </>
         )}
-        {err && (
-          <Label color='status.fail.background' mt={3} mb={0}>
+          <Label color='status.fail.background' mb={0}>
             {err}
           </Label>
-        )}
       </Box>
     </Box>
   )
