@@ -129,7 +129,6 @@ export default () => {
     setErr('')
     setFilAddress('')
     removeJwt('')
-    removeVerificationCid()
   }
 
   const back = () => {
