@@ -24,7 +24,7 @@ module.exports = (phase) => {
       GITHUB_REDIRECT_URL: 'http://localhost:3000/callback',
       VERIFIER_URL: 'http://localhost:8080',
       OAUTH_STATE_STRING: 'verifier',
-      LOTUS_NODE_JSONRPC: 'https://node.glif.io/02/rpc/v0',
+      LOTUS_NODE_JSONRPC: 'http://localhost:1234/rpc/v0',
       NETWORK_IDENTIFIER: 'local',
       IS_PROD: false
     }

@@ -89,7 +89,7 @@ export default () => {
       reportError(
         'components/PostAuth/index.jsx:1',
         false,
-        err.reponse.data.error,
+        err.response.data.error,
         err.message,
         err.stack
       )
@@ -142,7 +142,7 @@ export default () => {
 
   return (
     <>
-        <Box
+      <Box
         display='flex'
         width='100%'
         justifyContent='space-between'
@@ -180,28 +180,29 @@ export default () => {
             : 'input.background.base'
         }
       >
-          
-          {!confirming && !confirmed && !err && (
-            <Form onSubmit={onSubmit}>
-              <Box position='relative'
+        {!confirming && !confirmed && !err && (
+          <Form onSubmit={onSubmit}>
+            <Box
+              position='relative'
               display='flex'
               flexGrow='1'
               flexWrap='wrap'
-              alignItems='center'>
-                <InputLabelBase display='none' htmlFor='fil-address' />
-                <Input.Base
-                  id='fil-address'
-                  width='100%'
-                  pr={8}
-                  overflow='scroll'
-                  placeholder='t1OwL...'
-                  value={filAddress}
-                  onChange={(e) => {
-                    setErr('')
-                    setFilAddress(e.target.value)
-                  }}
-                />
-                <Button
+              alignItems='center'
+            >
+              <InputLabelBase display='none' htmlFor='fil-address' />
+              <Input.Base
+                id='fil-address'
+                width='100%'
+                pr={8}
+                overflow='scroll'
+                placeholder='t1OwL...'
+                value={filAddress}
+                onChange={(e) => {
+                  setErr('')
+                  setFilAddress(e.target.value)
+                }}
+              />
+              <Button
                 position='absolute'
                 right='0'
                 mx={2}
@@ -209,10 +210,10 @@ export default () => {
                 title='Request'
                 disabled={!filAddress}
               />
-              </Box>
-            </Form>
-          )}
-         <Box
+            </Box>
+          </Form>
+        )}
+        <Box
           display='flex'
           flexDirection='row'
           justifyContent='space-between'
@@ -248,10 +249,10 @@ export default () => {
         {!confirming && confirmed && (
           <Confirmed address={filAddress} cid={cidToConfirm} />
         )}
-          <Label color='status.fail.background' m={0}>
-            {err}
-          </Label>
+        <Label color='status.fail.background' m={0}>
+          {err}
+        </Label>
       </Box>
-      </>
+    </>
   )
 }
