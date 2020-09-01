@@ -6,7 +6,10 @@ import Footer from '../components/Footer'
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  max-width: 1440px;
+  margin: auto;
+  justify-content: center;
 `
 
 export default function Home() {

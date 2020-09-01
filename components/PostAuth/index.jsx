@@ -13,6 +13,7 @@ import {
   Label,
   Card
 } from '../Shared'
+import Loading from '../Shared/LoaderGlyph'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
@@ -29,7 +30,7 @@ const Form = styled.form`
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (error) return 'Oops. Please try again.'
   if (confirming) return 'Confirming...'
-  if (confirmed) return 'You have successfully verified'
+  if (confirmed) return 'Success'
   if (!confirming && !confirmed) return ''
 }
 
@@ -131,59 +132,68 @@ export default () => {
     removeVerificationCid()
   }
 
-  const calculateHeaderText = () => {
-    if (!confirmed && !confirming && !err)
-      return 'Enter an address to grant an 8GB verified data allowance'
-    if (confirming) return '.  .  .'
-    if (confirmed) return 'Niceee, transaction success!'
-    if (err) return 'Uh oh'
+  const back = () => {
+    setErr('')
+    setFilAddress('')
+    removeVerificationCid()
+    setCidToConfirm('')
+    setConfirmed(false)
   }
 
   return (
-    <Box display='flex' flexDirection='column' m={3} width='100%' maxWidth={14}>
-      <Text color='core.darkgray' textAlign='center' m='0' p='0'>
-        {calculateHeaderText()}
-      </Text>
+    <>
+        <Box
+        display='flex'
+        width='100%'
+        justifyContent='space-between'
+        flexWrap='wrap'
+        mb={3}
+      >
+        <Text
+          color='core.nearblack'
+          textAlign='center'
+          p='0'
+          m={0}
+          textTransform='uppercase'
+        >
+          REQUEST
+        </Text>
+        <Text color='core.darkgray' textAlign='left' p='0' m={0}>
+          Enter an address to grant an 8GB verified data allowance
+        </Text>
+      </Box>
       <Card
-        p={3}
-        mt={3}
+        p={0}
         border={0}
+        width='100%'
+        maxWidth={13}
+        height={7}
         display='flex'
         flexDirection='column'
         justifyContent='space-between'
-        minWidth={11}
-        bg={
-          confirmed
-            ? 'status.success.background'
-            : err
-            ? 'status.fail.background'
-            : 'background.screen'
-        }
         boxShadow={2}
+        bg={
+          err
+            ? 'status.fail.background'
+            : confirmed
+            ? 'status.success.background'
+            : 'input.background.base'
+        }
       >
-        <Box display='flex' flexWrap='wrap' justifyContent='space-between'>
-          <StepHeader
-            showStepper={false}
-            glyphAcronym={err ? 'Er' : 'Vr'}
-            loading={confirming}
-            title=''
-            width='auto'
-            title={StepHeaderTitle({ confirmed, confirming, error: err })}
-          />
+          
           {!confirming && !confirmed && !err && (
             <Form onSubmit={onSubmit}>
-              <Box display='flex' flexGrow='1' flexWrap='wrap'>
+              <Box position='relative'
+              display='flex'
+              flexGrow='1'
+              flexWrap='wrap'
+              alignItems='center'>
                 <InputLabelBase display='none' htmlFor='fil-address' />
                 <Input.Base
                   id='fil-address'
-                  width='auto'
-                  flexShrink='1'
-                  height={7}
-                  minWidth={11}
-                  mr={2}
-                  mt={[2, 2, 0]}
+                  width='100%'
+                  pr={8}
                   overflow='scroll'
-                  borderRadius={2}
                   placeholder='t1OwL...'
                   value={filAddress}
                   onChange={(e) => {
@@ -192,28 +202,56 @@ export default () => {
                   }}
                 />
                 <Button
-                  mt={[2, 2, 0]}
-                  type='submit'
-                  title='Verify'
-                  disabled={!filAddress}
-                />
+                position='absolute'
+                right='0'
+                mx={2}
+                type='submit'
+                title='Request'
+                disabled={!filAddress}
+              />
               </Box>
             </Form>
           )}
-          {err && <Button variant='secondary' title='Retry' onClick={reset} />}
+         <Box
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-between'
+          alignItems='center'
+          flexWrap='wrap'
+          height='100%'
+        >
+          <Text
+            m={0}
+            px={4}
+            maxWidth={11}
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            overflow='hidden'
+          >
+            {StepHeaderTitle({ confirmed, confirming, error: err })}
+          </Text>
+          {confirming && (
+            <Box mr={2}>
+              <Loading />
+            </Box>
+          )}
+          {confirmed && (
+            <Button mx={2} variant='secondary' title='Return' onClick={back} />
+          )}
+          {err && (
+            <Button mx={2} variant='secondary' title='Retry' onClick={reset} />
+          )}
         </Box>
       </Card>
-      <Box p={3} pt={0} mx={3}>
+      <Box pt={0} mx={0} textAlign='center' minHeight={6} mt={3}>
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
           <Confirmed address={filAddress} cid={cidToConfirm} />
         )}
-        {err && (
-          <Label color='status.fail.background' mt={3} mb={0}>
+          <Label color='status.fail.background' m={0}>
             {err}
           </Label>
-        )}
       </Box>
-    </Box>
+      </>
   )
 }

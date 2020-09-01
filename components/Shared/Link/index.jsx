@@ -9,10 +9,6 @@ export const StyledATag = styled.a.attrs((props) => ({
   ...props
 }))`
   text-decoration: none;
-  transition: 0.18s ease-in-out;
-  border-bottom: 2px solid ${(props) => props.theme.colors.core.primary}00;
-  &:hover {
-    border-bottom: 2px solid ${(props) => props.theme.colors.core.primary};
   }
   ${color}
   ${typography}
