@@ -9,7 +9,7 @@ export const JwtProvider = ({ children }) => {
   useEffect(() => {
     if (!!window && typeof window !== 'undefined') {
       const jwt = window.localStorage.getItem(
-        `verifier-jwt:${process.env.NETWORK_IDENTIFIER}}`
+        `verifier-jwt:${process.env.NETWORK_IDENTIFIER}`
       )
       if (jwt) setJwt(jwt)
     }
@@ -18,7 +18,7 @@ export const JwtProvider = ({ children }) => {
   const storeJwt = (jwt) => {
     setJwt(jwt)
     window.localStorage.setItem(
-      `verifier-jwt:${process.env.NETWORK_IDENTIFIER}}`,
+      `verifier-jwt:${process.env.NETWORK_IDENTIFIER}`,
       jwt
     )
   }
@@ -26,7 +26,7 @@ export const JwtProvider = ({ children }) => {
   const removeJwt = () => {
     setJwt('')
     window.localStorage.removeItem(
-      `verifier-jwt:${process.env.NETWORK_IDENTIFIER}}`
+      `verifier-jwt:${process.env.NETWORK_IDENTIFIER}`
     )
   }
 
