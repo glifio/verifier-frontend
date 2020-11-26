@@ -25,7 +25,7 @@ export default () => {
         alignItems='center'
         justifyContent='center'
         height='100%'
-        width='100%'
+        width='100vw'
         zIndex='9999'
       >
         <Box

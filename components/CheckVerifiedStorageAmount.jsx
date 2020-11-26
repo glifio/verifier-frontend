@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import { validateAddressString } from '@openworklabs/filecoin-address'
+import { validateAddressString } from '@glif/filecoin-address'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 

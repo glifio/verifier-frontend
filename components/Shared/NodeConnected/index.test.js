@@ -1,9 +1,9 @@
 jest.mock('axios')
-jest.mock('@openworklabs/lotus-jsonrpc-engine')
+jest.mock('@glif/filecoin-rpc-client')
 
 import { cleanup, render, act } from '@testing-library/react'
 import axios from 'axios'
-import LotusRPCEngine from '@openworklabs/lotus-jsonrpc-engine'
+import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import connectionStrength from './connectionStrength'
 import NodeConnectedWidget from '.'
 import ThemeProvider from '../ThemeProvider'
