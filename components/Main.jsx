@@ -1,7 +1,7 @@
 import React from 'react'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Title, Header, Label, Highlight } from './Shared'
+import { Box, Title, Text, Header } from './Shared'
 import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
 import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
 import { useJwt } from '../lib/JwtHandler'
@@ -10,6 +10,7 @@ export default () => {
   const { jwt } = useJwt()
   return (
     <Box
+      position='relative'
       display='flex'
       flexWrap='wrap'
       minHeight='90vh'
@@ -18,6 +19,57 @@ export default () => {
       flexGrow='1'
       p={[2, 3, 5]}
     >
+      <Box
+        position='absolute'
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+        height='100%'
+        width='100%'
+        zIndex='9999'
+      >
+        <Box
+          display='flex'
+          flexWrap='wrap'
+          alignItems='center'
+          justifyContent='flex-start'
+          bg='core.white'
+          width='100%'
+          maxWidth={13}
+          py={2}
+          mx={3}
+          boxShadow={2}
+          borderRadius={3}
+          zIndex='9999'
+        >
+          <Box
+            width={7}
+            height={7}
+            borderRadius={3}
+            mx={2}
+            css={`
+              background: url('/imgverify.png') center center no-repeat;
+              background-size: 100%;
+            `}
+          />
+          <Box>
+            <Title width='100%' color='core.nearblack'>
+              Coming Soon
+            </Title>
+            <Text color='core.darkgray' my={0}>
+              Glif Verify will launch alongside Filecoin Plus
+            </Text>
+          </Box>
+        </Box>
+        <Box
+          position='absolute'
+          height='100%'
+          width='100%'
+          bg='core.black'
+          zIndex='-9'
+          opacity='0.9'
+        ></Box>
+      </Box>
       <Box
         display='flex'
         maxWidth={13}
@@ -43,7 +95,8 @@ export default () => {
         >
           <Header>Verify yourself, get verified storage</Header>
           <Title mt={3} lineHeight='140%'>
-          Receive small data allowances by connecting to any GitHub account over 180 days old.
+            Receive small data allowances by connecting to any GitHub account
+            over 180 days old.
           </Title>
           {/* <Box mt={[2, 3, 4, 6]} maxWidth={12}>
             <Label color='core.darkgray' textAlign='left' mt={3}>
