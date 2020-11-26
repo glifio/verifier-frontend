@@ -57,7 +57,7 @@ export default () => {
               Coming Soon
             </Title>
             <Text color='core.darkgray' my={0}>
-              Glif Verify will launch alongside Filecoin Plus
+              Glif Verify will launch in early 2021.
             </Text>
           </Box>
         </Box>

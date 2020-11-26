@@ -161,6 +161,8 @@ export default () => {
                   setErr('')
                   setFilAddress(e.target.value)
                 }}
+                // remove for launch
+                disabled
               />
               <Button
                 position='absolute'
@@ -170,7 +172,8 @@ export default () => {
                 variant='secondary'
                 mx={2}
                 px={4}
-                disabled={!filAddress}
+                disabled
+                // disabled={!filAddress}
                 bg='transparent'
               />
             </Box>
