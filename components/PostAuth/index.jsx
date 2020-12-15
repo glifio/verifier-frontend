@@ -75,10 +75,8 @@ export default () => {
   const verify = async (jwt, filAddress) => {
     try {
       const res = await axios.post(
-        `${VERIFIER_URL}/verify`,
-        {
-          targetAddr: filAddress
-        },
+        `${VERIFIER_URL}/verify/${filAddress}`,
+        {},
         {
           headers: { Authorization: `Bearer ${jwt}` }
         }
