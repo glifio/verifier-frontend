@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
+import { VERIFIER_URL } from '@env'
 
 import {
   Box,
@@ -74,7 +75,7 @@ export default () => {
   const verify = async (jwt, filAddress) => {
     try {
       const res = await axios.post(
-        `${process.env.VERIFIER_URL}/verify`,
+        `${VERIFIER_URL}/verify`,
         {
           targetAddr: filAddress
         },

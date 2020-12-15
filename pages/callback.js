@@ -2,9 +2,10 @@ import { Component } from 'react'
 import axios from 'axios'
 import CallbackRedirect from '../components/CallbackRedirect'
 import reportError from '../utils/reportError'
+import { VERIFIER_URL } from '@env'
 
 const getJWT = async (code, state) => {
-  const res = await axios.post(`${process.env.VERIFIER_URL}/oauth/github`, {
+  const res = await axios.post(`${VERIFIER_URL}/oauth/github`, {
     code,
     state
   })
