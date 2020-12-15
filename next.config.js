@@ -1,32 +1,26 @@
-const {
-  PHASE_PRODUCTION_BUILD,
-  PHASE_PRODUCTION_SERVER
-} = require('next/constants')
+const webpack = require('webpack')
+const path = require('path')
 
-module.exports = (phase) => {
-  if (phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    return {
-      env: {
-        GITHUB_CLIENT_ID: '8861de8f921b556a4a0e',
-        GITHUB_REDIRECT_URL: 'https://github-oauth.glif.io/callback',
-        VERIFIER_URL: 'https://verifier.glif.io',
-        OAUTH_STATE_STRING: 'verifier',
-        LOTUS_NODE_JSONRPC: 'https://dev.node.glif.io/01/rpc/v0',
-        NETWORK_IDENTIFIER: 'space-race',
-        IS_PROD: true
-      }
+module.exports = {
+  webpack(config) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@env': path.join(__dirname, './constants.js'),
+      react: path.resolve('./node_modules/react'),
+      'react-dom': path.resolve('./node_modules/react-dom'),
+      next: path.resolve('./node_modules/next'),
+      'styled-components': path.resolve('./node_modules/styled-components')
     }
-  }
-
-  return {
-    env: {
-      GITHUB_CLIENT_ID: '82c4ac1b64e9ef7a0efa',
-      GITHUB_REDIRECT_URL: 'http://localhost:3000/callback',
-      VERIFIER_URL: 'http://localhost:8080',
-      OAUTH_STATE_STRING: 'verifier',
-      LOTUS_NODE_JSONRPC: 'https://dev.node.glif.io/nerpa01/lotus/rpc/v0',
-      NETWORK_IDENTIFIER: 'local',
-      IS_PROD: false
-    }
+    return config
+  },
+  publicRuntimeConfig: {
+    // Will be available on both server and client
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    GITHUB_REDIRECT_URL: process.env.GITHUB_REDIRECT_URL,
+    VERIFIER_URL: process.env.VERIFIER_URL,
+    OAUTH_STATE_STRING: process.env.OAUTH_STATE_STRING,
+    LOTUS_NODE_JSONRPC: process.env.LOTUS_NODE_JSONRPC,
+    NETWORK_IDENTIFIER: process.env.NETWORK_IDENTIFIER,
+    IS_PROD: process.env.IS_PROD
   }
 }

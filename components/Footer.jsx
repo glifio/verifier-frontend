@@ -11,16 +11,15 @@ export default () => (
     width='100%'
     textAlign='center'
     bg='background.screen'
-
   >
     <Text m={0}>Made by</Text>
     <StyledATag
       ml={2}
-      href='https://www.openworklabs.com'
+      href='https://www.infinitescroll.org'
       textAlign='right'
       color='core.primary'
     >
-      OWL
+      Infinite Scroll
     </StyledATag>
   </Box>
 )

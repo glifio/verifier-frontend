@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import { validateAddressString } from '@openworklabs/filecoin-address'
+import { validateAddressString } from '@glif/filecoin-address'
+import { VERIFIER_URL } from '@env'
 
 import {
   Box,
@@ -74,7 +75,7 @@ export default () => {
   const verify = async (jwt, filAddress) => {
     try {
       const res = await axios.post(
-        `${process.env.VERIFIER_URL}/verify/${filAddress}`,
+        `${VERIFIER_URL}/verify/${filAddress}`,
         {},
         {
           headers: { Authorization: `Bearer ${jwt}` }
@@ -199,6 +200,8 @@ export default () => {
                   setErr('')
                   setFilAddress(e.target.value)
                 }}
+                // remove when launch
+                disabled
               />
               <Button
                 position='absolute'
@@ -206,7 +209,9 @@ export default () => {
                 mx={2}
                 type='submit'
                 title='Request'
-                disabled={!filAddress}
+                // remove when launch
+                disabled
+                // disabled={!filAddress}
               />
             </Box>
           </Form>
