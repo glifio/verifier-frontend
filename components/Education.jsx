@@ -1,4 +1,4 @@
-import { Box, Title, Text } from './Shared'
+import { Box, Title, Text } from '@glif/react-components'
 
 const QA = ({ question, answers }) => (
   <Box m={4} maxWidth={12}>

@@ -1,11 +1,22 @@
 import React from 'react'
 import { string } from 'prop-types'
-import { Text, Label, StyledATag } from '../Shared'
+import { AddressLink, Label, StyledATag } from '@glif/react-components'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 
-export const Confirming = ({ err }) => {
+export const Confirming = ({ err, cid }) => {
   return (
     <>
+      {' '}
+      <StyledATag
+        display='inline'
+        rel='noopener noreferrer'
+        target='_blank'
+        border='none'
+        height='min-content'
+        href={`https://filfox.info/en/message/${cid}`}
+      >
+        View your pending message.
+      </StyledATag>
       {err && (
         <Label color='status.fail.background' m={0}>
           {err}
@@ -16,7 +27,8 @@ export const Confirming = ({ err }) => {
 }
 
 Confirming.propTypes = {
-  err: string
+  err: string,
+  cid: string.isRequired
 }
 
 Confirming.defaultProps = {
@@ -26,18 +38,23 @@ Confirming.defaultProps = {
 export const Confirmed = ({ address, cid }) => {
   return (
     <>
-      <Text display='inline' m={0}>
-        All set! {address} has an 8GB verified Filecoin allowance.
-      </Text>
+      <Label display='inline-block' my={0} mx={2}>
+        Granted an 8GB verified data allowance to:{' '}
+        <AddressLink
+          truncate={true}
+          address={address}
+          href={`https://filfox.info/en/address/${address}`}
+        />
+      </Label>{' '}
       <StyledATag
         display='inline'
         rel='noopener noreferrer'
         target='_blank'
-        href={`https://filscan.io/#/message/detail?cid=${cid}`}
+        border='none'
+        height='min-content'
+        href={`https://filfox.info/en/message/${cid}`}
       >
-        <Label display='inline' mx={2} color='core.primary'>
-          VIEW
-        </Label>
+        VIEW
       </StyledATag>
     </>
   )

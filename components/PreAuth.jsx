@@ -1,6 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { Box, Text, IconGitHub } from './Shared'
+import { Box, Text, IconGitHub } from '@glif/react-components'
 import { GITHUB_CLIENT_ID, OAUTH_STATE_STRING, GITHUB_REDIRECT_URL } from '@env'
 
 export default () => {

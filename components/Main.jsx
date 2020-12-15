@@ -1,8 +1,7 @@
 import React from 'react'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
-import { Box, Title, Text, Header } from './Shared'
-import HeaderGlyph from './Shared/Glyph/HeaderGlyph'
+import { Box, Title, Header, HeaderGlyph } from '@glif/react-components'
 import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
 import { useJwt } from '../lib/JwtHandler'
 
@@ -20,57 +19,6 @@ export default () => {
       p={[2, 3, 5]}
     >
       <Box
-        position='absolute'
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-        height='100%'
-        width='100vw'
-        zIndex='9999'
-      >
-        <Box
-          display='flex'
-          flexWrap='wrap'
-          alignItems='center'
-          justifyContent='flex-start'
-          bg='core.white'
-          width='100%'
-          maxWidth={13}
-          py={2}
-          mx={3}
-          boxShadow={2}
-          borderRadius={3}
-          zIndex='9999'
-        >
-          <Box
-            width={7}
-            height={7}
-            borderRadius={3}
-            mx={2}
-            css={`
-              background: url('/imgverify.png') center center no-repeat;
-              background-size: 100%;
-            `}
-          />
-          <Box>
-            <Title width='100%' color='core.nearblack'>
-              Coming Soon
-            </Title>
-            <Text color='core.darkgray' my={0}>
-              Glif Verify will launch in early 2021.
-            </Text>
-          </Box>
-        </Box>
-        <Box
-          position='absolute'
-          height='100%'
-          width='100%'
-          bg='core.black'
-          zIndex='-9'
-          opacity='0.9'
-        ></Box>
-      </Box>
-      <Box
         display='flex'
         maxWidth={13}
         width={['100%', '100%', '40%']}
@@ -84,8 +32,8 @@ export default () => {
           text='Verify'
           imageUrl='/imgverify.png'
           color='white'
+          fill='white'
         />
-
         <Box
           display='flex'
           flexDirection='column'
@@ -93,21 +41,11 @@ export default () => {
           alignSelf='center'
           textAlign='left'
         >
-          <Header>Verify yourself, get verified storage</Header>
+          <Header lineHeight={1}>Verify yourself, get verified storage</Header>
           <Title mt={3} lineHeight='140%'>
             Receive small data allowances by connecting to any GitHub account
             over 180 days old.
           </Title>
-          {/* <Box mt={[2, 3, 4, 6]} maxWidth={12}>
-            <Label color='core.darkgray' textAlign='left' mt={3}>
-              <Highlight fontSize={2}>Miners</Highlight>
-              You can reuse this faucet by entering in your miner ID
-            </Label>
-            <Label color='core.darkgray' textAlign='left' mt={3}>
-              <Highlight fontSize={2}>Not a miner?</Highlight>
-              t1 and t3 addresses can only use this faucet once
-            </Label>
-          </Box> */}
         </Box>
       </Box>
       <Box
@@ -131,7 +69,7 @@ export default () => {
           borderRadius={2}
           bg='background.screen'
         >
-          {jwt ? <PostAuth /> : <PreAuth />}
+          {true ? <PostAuth /> : <PreAuth />}
         </Box>
         <CheckVerifiedStorageAmount />
       </Box>
