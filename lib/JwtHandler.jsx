@@ -1,5 +1,6 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
 import { node } from 'prop-types'
+import { NETWORK_IDENTIFIER } from '@env'
 
 const JwtContext = createContext({})
 
@@ -9,7 +10,7 @@ export const JwtProvider = ({ children }) => {
   useEffect(() => {
     if (!!window && typeof window !== 'undefined') {
       const jwt = window.localStorage.getItem(
-        `verifier-jwt:${process.env.NETWORK_IDENTIFIER}`
+        `verifier-jwt:${NETWORK_IDENTIFIER}`
       )
       if (jwt) setJwt(jwt)
     }
@@ -17,17 +18,12 @@ export const JwtProvider = ({ children }) => {
 
   const storeJwt = (jwt) => {
     setJwt(jwt)
-    window.localStorage.setItem(
-      `verifier-jwt:${process.env.NETWORK_IDENTIFIER}`,
-      jwt
-    )
+    window.localStorage.setItem(`verifier-jwt:${NETWORK_IDENTIFIER}`, jwt)
   }
 
   const removeJwt = () => {
     setJwt('')
-    window.localStorage.removeItem(
-      `verifier-jwt:${process.env.NETWORK_IDENTIFIER}`
-    )
+    window.localStorage.removeItem(`verifier-jwt:${NETWORK_IDENTIFIER}`)
   }
 
   return (

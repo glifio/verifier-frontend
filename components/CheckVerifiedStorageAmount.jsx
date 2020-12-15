@@ -7,6 +7,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 import { Box, Button, Card, Text, Input, InputLabelBase, Label } from './Shared'
 import reportError from '../utils/reportError'
+import { VERIFIER_URL } from '@env'
 
 dayjs.extend(relativeTime)
 
@@ -45,7 +46,7 @@ export default () => {
       setLoading(true)
       try {
         const res = await axios.get(
-          `${process.env.VERIFIER_URL}/account-remaining-bytes/${filAddress}`
+          `${VERIFIER_URL}/account-remaining-bytes/${filAddress}`
         )
         if (res.status !== 200) {
           setErr(res.statusText)
