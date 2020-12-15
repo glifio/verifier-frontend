@@ -69,7 +69,7 @@ export default () => {
           borderRadius={2}
           bg='background.screen'
         >
-          {true ? <PostAuth /> : <PreAuth />}
+          {jwt ? <PostAuth /> : <PreAuth />}
         </Box>
         <CheckVerifiedStorageAmount />
       </Box>
