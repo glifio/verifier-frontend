@@ -1,11 +1,19 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import {
+  Box,
+  Button,
+  Card,
+  Text,
+  Input,
+  InputLabelBase,
+  Label
+} from '@glif/react-components'
 import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-import { Box, Button, Card, Text, Input, InputLabelBase, Label } from './Shared'
 import reportError from '../utils/reportError'
 import { VERIFIER_URL } from '@env'
 
@@ -138,6 +146,7 @@ export default () => {
           flexDirection='row'
           justifyContent='space-between'
           flexWrap='wrap'
+          height='100%'
         >
           <Form onSubmit={onSubmit}>
             <Box
@@ -146,6 +155,7 @@ export default () => {
               flexGrow='1'
               flexWrap='wrap'
               alignItems='center'
+              height='100%'
             >
               <InputLabelBase display='none' htmlFor='check-fil-address' />
               <Input.Base
@@ -153,6 +163,8 @@ export default () => {
                 width='100%'
                 flexShrink='1'
                 pr={8}
+                pl={3}
+                height='100%'
                 overflow='scroll'
                 placeholder='t1OwL...'
                 value={filAddress}
@@ -162,8 +174,6 @@ export default () => {
                   setErr('')
                   setFilAddress(e.target.value)
                 }}
-                // remove for launch
-                disabled
               />
               <Button
                 position='absolute'
@@ -173,8 +183,7 @@ export default () => {
                 variant='secondary'
                 mx={2}
                 px={4}
-                disabled
-                // disabled={!filAddress}
+                disabled={!filAddress}
                 bg='transparent'
               />
             </Box>

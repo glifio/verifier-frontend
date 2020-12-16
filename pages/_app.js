@@ -1,6 +1,6 @@
 import App from 'next/app'
 import Head from 'next/head'
-import { theme, ThemeProvider } from '../components/Shared'
+import { theme, ThemeProvider } from '@glif/react-components'
 import { JwtProvider } from '../lib/JwtHandler'
 import { MessageConfirmerProvider } from '../lib/ConfirmMessage'
 import '../stylesheets/normalize.css'

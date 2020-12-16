@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text, StyledATag } from './Shared'
+import { Box, Text, StyledATag } from '@glif/react-components'
 
 export default () => (
   <Box
