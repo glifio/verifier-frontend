@@ -7,7 +7,8 @@ import {
   Text,
   Input,
   InputLabelBase,
-  Label
+  Label,
+  StyledATag
 } from '@glif/react-components'
 import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
@@ -15,6 +16,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
 import reportError from '../utils/reportError'
+import truncateAddr from '../utils/truncateAddress'
 import { VERIFIER_URL } from '@env'
 
 dayjs.extend(relativeTime)
@@ -192,16 +194,17 @@ export default () => {
       </Card>
       <Box pt={0} mx={3} minHeight={4} mt={3}>
         {remainingBytes && !err && !loading && (
-          <>
-            <Text color='core.black'>
-              {filAddress} has {remainingBytes} bytes of verified Filecoin
-              storage left.
-            </Text>
-            <Text color='core.black'>
-              {filAddress} can renew its verification {calcNextAllocationTime()}
-              .
-            </Text>
-          </>
+          <Text color='core.black'>
+            <StyledATag
+              display='inline-block'
+              href={`https://filfox.info/en/address/${filAddress}`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {truncateAddr(filAddress)}
+            </StyledATag>{' '}
+            has {remainingBytes} bytes of verified Filecoin storage left.
+          </Text>
         )}
         {loading && !err && <Text color='core.black'>Loading...</Text>}
         <Label color='status.fail.background' mb={0}>

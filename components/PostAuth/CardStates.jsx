@@ -1,12 +1,12 @@
 import React from 'react'
 import { string } from 'prop-types'
-import { AddressLink, Label, StyledATag } from '@glif/react-components'
+import { Label, StyledATag } from '@glif/react-components'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
+import truncateAddress from '../../utils/truncateAddress'
 
 export const Confirming = ({ err, cid }) => {
   return (
     <>
-      {' '}
       <StyledATag
         display='inline'
         rel='noopener noreferrer'
@@ -40,11 +40,14 @@ export const Confirmed = ({ address, cid }) => {
     <>
       <Label display='inline-block' my={0} mx={2}>
         Granted an 8GB verified data allowance to:{' '}
-        <AddressLink
-          truncate={true}
-          address={address}
+        <StyledATag
+          display='inline-block'
+          target='_blank'
+          rel='noopener noreferrer'
           href={`https://filfox.info/en/address/${address}`}
-        />
+        >
+          {truncateAddress(address)}
+        </StyledATag>
       </Label>{' '}
       <StyledATag
         display='inline'
