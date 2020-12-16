@@ -40,11 +40,14 @@ export const Confirmed = ({ address, cid }) => {
     <>
       <Label display='inline-block' my={0} mx={2}>
         Granted an 8GB verified data allowance to:{' '}
-        <AddressLink
-          truncate={true}
-          address={address}
+        <StyledATag
+          display='inline-block'
+          target='_blank'
+          rel='noopener noreferrer'
           href={`https://filfox.info/en/address/${address}`}
-        />
+        >
+          {truncateAddress(address)}
+        </StyledATag>
       </Label>{' '}
       <StyledATag
         display='inline'
