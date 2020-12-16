@@ -1,12 +1,12 @@
 import React from 'react'
 import { string } from 'prop-types'
-import { AddressLink, Label, StyledATag } from '@glif/react-components'
+import { Label, StyledATag } from '@glif/react-components'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
+import truncateAddress from '../../utils/truncateAddress'
 
 export const Confirming = ({ err, cid }) => {
   return (
     <>
-      {' '}
       <StyledATag
         display='inline'
         rel='noopener noreferrer'
