@@ -15,7 +15,7 @@ jobs:
       NERPA_GITHUB_REDIRECT_URL: https://github-oauth.glif.io/callback
       VERIFIER_URL: https://verifier-nerpa-xhzgecibnq-uc.a.run.app
       OAUTH_STATE_STRING: verifier-nerpa
-      LOTUS_NODE_JSONRPC: https://dev.node.glif.io/nerpa01/lotus
+      LOTUS_NODE_JSONRPC: https://dev.node.glif.io/nerpa01/lotus/rpc/v0
       NETWORK_IDENTIFIER: nerpa
     runs-on: ubuntu-latest
     steps:
