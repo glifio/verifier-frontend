@@ -29,8 +29,6 @@ export default () => {
           }
         `}
         onClick={() => {
-          // remove when launch
-          return
           window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URL}&state=${OAUTH_STATE_STRING}-${uuidv4()}`
         }}
       >
