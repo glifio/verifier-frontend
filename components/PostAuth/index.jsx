@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
-import { VERIFIER_URL } from '@env'
+
+const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 import {
   Box,

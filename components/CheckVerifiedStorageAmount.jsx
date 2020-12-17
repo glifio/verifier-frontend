@@ -17,7 +17,8 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 import reportError from '../utils/reportError'
 import truncateAddr from '../utils/truncateAddress'
-import { VERIFIER_URL } from '@env'
+
+const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 dayjs.extend(relativeTime)
 

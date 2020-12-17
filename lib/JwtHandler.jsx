@@ -1,6 +1,7 @@
 import React, { useState, createContext, useContext, useEffect } from 'react'
 import { node } from 'prop-types'
-import { NETWORK_IDENTIFIER } from '@env'
+
+const NETWORK_IDENTIFIER = process.env.NEXT_PUBLIC_NETWORK_IDENTIFIER
 
 const JwtContext = createContext({})
 

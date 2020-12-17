@@ -1,7 +1,10 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { Box, Text, IconGitHub } from '@glif/react-components'
-import { GITHUB_CLIENT_ID, OAUTH_STATE_STRING, GITHUB_REDIRECT_URL } from '@env'
+
+const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
+const OAUTH_STATE_STRING = process.env.NEXT_PUBLIC_OAUTH_STATE_STRING
+const GITHUB_REDIRECT_URL = process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL
 
 export default () => {
   return (
