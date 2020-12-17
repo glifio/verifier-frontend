@@ -81,7 +81,6 @@ export default () => {
           headers: { Authorization: `Bearer ${jwt}` }
         }
       )
-      console.log({ res })
       if (res.status !== 200) throw new Error(res.data.error)
       setCidToConfirm(res.data.cid)
       return res.data.cid
