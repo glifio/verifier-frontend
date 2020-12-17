@@ -9,7 +9,6 @@ module.exports = (phase) => ({
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@env': path.join(__dirname, './constants.js'),
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
       next: path.resolve('./node_modules/next'),
