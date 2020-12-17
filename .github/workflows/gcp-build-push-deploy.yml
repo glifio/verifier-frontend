@@ -14,7 +14,7 @@ jobs:
       NERPA_GITHUB_CLIENT_ID: 8861de8f921b556a4a0e
       NERPA_GITHUB_REDIRECT_URL: https://github-oauth.glif.io/callback
       VERIFIER_URL: https://verifier-nerpa-xhzgecibnq-uc.a.run.app
-      OAUTH_STATE_STRING: nerpa-verifier
+      OAUTH_STATE_STRING: verifier-nerpa
       LOTUS_NODE_JSONRPC: https://dev.node.glif.io/nerpa01/lotus
       NETWORK_IDENTIFIER: nerpa
     runs-on: ubuntu-latest
@@ -37,12 +37,12 @@ jobs:
       - name: Build
         run: |
           docker build \
-          --build-arg GITHUB_CLIENT_ID=${{ secrets.NERPA_GITHUB_CLIENT_ID }} \
-          --build-arg GITHUB_REDIRECT_URL=${{ secrets.NERPA_GITHUB_REDIRECT_URL }} \
-          --build-arg VERIFIER_URL=${{ secrets.VERIFIER_URL }} \
-          --build-arg OAUTH_STATE_STRING=${{ secrets.OAUTH_STATE_STRING }} \
-          --build-arg LOTUS_NODE_JSONRPC=${{ secrets.LOTUS_NODE_JSONRPC }} \
-          --build-arg NETWORK_IDENTIFIER=${{ secrets.NETWORK_IDENTIFIER }} \
+          --build-arg GITHUB_CLIENT_ID=$NERPA_GITHUB_CLIENT_ID \
+          --build-arg GITHUB_REDIRECT_URL=$NERPA_GITHUB_REDIRECT_URL \
+          --build-arg VERIFIER_URL=$VERIFIER_URL \
+          --build-arg OAUTH_STATE_STRING=$OAUTH_STATE_STRING \
+          --build-arg LOTUS_NODE_JSONRPC=$LOTUS_NODE_JSONRPC \
+          --build-arg NETWORK_IDENTIFIER=$NETWORK_IDENTIFIER \
           --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/nerpa-verifier-frontend:latest \
           .
 
