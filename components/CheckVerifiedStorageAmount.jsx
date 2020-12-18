@@ -194,19 +194,34 @@ export default () => {
         </Box>
       </Card>
       <Box pt={0} mx={3} minHeight={4} mt={3}>
-        {remainingBytes && !err && !loading && (
-          <Text color='core.black'>
-            <StyledATag
-              display='inline-block'
-              href={`https://filfox.info/en/address/${filAddress}`}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              {truncateAddr(filAddress)}
-            </StyledATag>{' '}
-            has {remainingBytes} bytes of verified Filecoin storage left.
-          </Text>
-        )}
+        {remainingBytes &&
+          !err &&
+          !loading &&
+          (Number(remainingBytes) === 0 ? (
+            <Text color='core.black'>
+              <StyledATag
+                display='inline-block'
+                href={`https://filfox.info/en/address/${filAddress}`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {truncateAddr(filAddress)}
+              </StyledATag>{' '}
+              is not a verified client.
+            </Text>
+          ) : (
+            <Text color='core.black'>
+              <StyledATag
+                display='inline-block'
+                href={`https://filfox.info/en/address/${filAddress}`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {truncateAddr(filAddress)}
+              </StyledATag>{' '}
+              has {remainingBytes} bytes of verified Filecoin storage left.
+            </Text>
+          ))}
         {loading && !err && <Text color='core.black'>Loading...</Text>}
         <Label color='status.fail.background' mb={0}>
           {err}
