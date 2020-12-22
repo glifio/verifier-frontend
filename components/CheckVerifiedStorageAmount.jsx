@@ -17,6 +17,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 import reportError from '../utils/reportError'
 import truncateAddr from '../utils/truncateAddress'
+import niceBytes from '../utils/niceBytes'
 
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
@@ -219,7 +220,7 @@ export default () => {
               >
                 {truncateAddr(filAddress)}
               </StyledATag>{' '}
-              has {remainingBytes} bytes of verified Filecoin storage left.
+              has {niceBytes(remainingBytes)} of verified Filecoin storage left.
             </Text>
           ))}
         {loading && !err && <Text color='core.black'>Loading...</Text>}
