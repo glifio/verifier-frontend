@@ -12,7 +12,7 @@ jobs:
       NERPA_GITHUB_CLIENT_ID: 8861de8f921b556a4a0e
       NERPA_GITHUB_REDIRECT_URL: https://github-oauth.glif.io/callback
       VERIFIER_URL: https://nerpa.verify.backend.glif.io
-      OAUTH_STATE_STRING: nerpa-verifier
+      OAUTH_STATE_STRING: verifier-nerpa
       LOTUS_NODE_JSONRPC: https://dev.node.glif.io/nerpa01/lotus/rpc/v0
       NETWORK_IDENTIFIER: nerpa
       IS_PROD: true
