@@ -6,20 +6,24 @@ import reportError from '../utils/reportError'
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 const getJWT = async (code, state) => {
+  console.log('GETTING JWT', code, state, VERIFIER_URL)
   const res = await axios.post(`${VERIFIER_URL}/oauth/github`, {
     code,
     state
   })
+  console.log('RES', res)
   if (res.status !== 200) throw new Error(res.statusText)
   return res.data.jwt
 }
 
 export default class Callback extends Component {
   static async getInitialProps({ query, res }) {
+    console.log('IN GET INITIAL PROPS', query)
     try {
       const jwt = await getJWT(query.code, query.state)
       return { jwt, err: null }
     } catch (err) {
+      console.log({ err })
       if (typeof window === 'undefined') {
         // we redirect the error in the catch statement,
         // since reportError can only make client side transitions
