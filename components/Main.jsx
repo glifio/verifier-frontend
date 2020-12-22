@@ -43,8 +43,8 @@ export default () => {
         >
           <Header lineHeight={1}>Verify yourself, get verified storage</Header>
           <Title mt={3} lineHeight='140%'>
-            Receive small data allowances by connecting to any GitHub account
-            over 180 days old.
+            Get DataCap once a month by connecting to any GitHub account over
+            180 days old.
           </Title>
         </Box>
       </Box>
