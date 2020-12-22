@@ -220,7 +220,7 @@ export default () => {
               >
                 {truncateAddr(filAddress)}
               </StyledATag>{' '}
-              has {niceBytes(remainingBytes)} of verified Filecoin storage left.
+              has {niceBytes(remainingBytes)} of DataCap left.
             </Text>
           ))}
         {loading && !err && <Text color='core.black'>Loading...</Text>}
