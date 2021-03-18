@@ -37,7 +37,7 @@ export default () => (
             <Text mt={4} color='core.darkgray' {...props}>
               Anyone who is likely to be using Filecoin to store and use real
               data can verify their Filecoin address to receive DataCap. DataCap
-              can be spent in lieu of Filecoin to store data with miners.
+              can be spent in storage deals with miners.
             </Text>
           )
         ]}
