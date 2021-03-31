@@ -39,7 +39,7 @@ export const Confirmed = ({ address, cid }) => {
   return (
     <>
       <Label display='inline-block' my={0} mx={2}>
-        Granted an 8GB verified data allowance to:{' '}
+        Granted an 32GiB verified data allowance to:{' '}
         <StyledATag
           display='inline-block'
           target='_blank'

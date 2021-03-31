@@ -102,7 +102,7 @@ export default () => (
               This app provides small data caps to anyone who has a GitHub
               account over 180 days old to make testing and experimentation
               easy. Simply link your GitHub account to a Filecoin address, and
-              we’ll grant that address 8 GB of DataCap.
+              we’ll grant that address 32 GiB of DataCap.
             </Text>
           )
         ]}
