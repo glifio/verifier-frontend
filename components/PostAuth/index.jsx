@@ -159,7 +159,7 @@ export default () => {
           REQUEST
         </Text>
         <Text color='core.darkgray' textAlign='left' p='0' m={0}>
-          Enter an address to grant an 8GB verified data allowance
+          Enter an address to grant an 32GiB verified data allowance
         </Text>
       </Box>
       <Card
@@ -203,7 +203,7 @@ export default () => {
                   width='100%'
                   pr={8}
                   overflow='scroll'
-                  placeholder='t1OwL...'
+                  placeholder='f1OwL...'
                   value={filAddress}
                   pl={3}
                   height='100%'
