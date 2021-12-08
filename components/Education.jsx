@@ -22,6 +22,7 @@ export default function Education() {
       justifyContent='space-between'
       alignItems='center'
       flexDirection='column'
+      borderRadius='8px'
     >
       <Box
         display='flex'
