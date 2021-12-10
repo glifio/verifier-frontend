@@ -73,17 +73,7 @@ export default () => {
   }
 
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      p={3}
-      mt={5}
-      minHeight={10}
-      width='100%'
-      maxWidth={13}
-      alignItems='center'
-      justifyContent='center'
-    >
+    <>
       <Box
         display='flex'
         width='100%'
@@ -189,6 +179,6 @@ export default () => {
           {err}
         </Label>
       </Box>
-    </Box>
+    </>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
 
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
@@ -141,13 +141,7 @@ export default () => {
 
   return (
     <>
-      <Box
-        display='flex'
-        width='100%'
-        justifyContent='space-between'
-        flexWrap='wrap'
-        mb={3}
-      >
+      <Box>
         <Text color='core.darkgray' textAlign='left' p='0' m={0}>
           Enter an address to grant an 32GiB verified data allowance
         </Text>

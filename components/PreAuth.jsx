@@ -1,6 +1,7 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { IconGitHub, H2, fontSize, ButtonV2 } from '@glif/react-components'
+import { IconGitHub, H2, fontSize, ButtonV2, Box } from '@glif/react-components'
+import { css } from 'styled-components'
 
 const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const OAUTH_STATE_STRING = process.env.NEXT_PUBLIC_OAUTH_STATE_STRING
@@ -11,7 +12,9 @@ export default function PreAuthenticated() {
     <>
       <H2
         style={{
+          marginTop: 0,
           marginBottom: '1em',
+          fontWeight: 'normal',
           fontSize: fontSize('large'),
           lineHeight: '1.3em'
         }}
