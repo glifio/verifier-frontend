@@ -1,7 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { IconGitHub, H2, fontSize, ButtonV2, Box } from '@glif/react-components'
-import { css } from 'styled-components'
 
 const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const OAUTH_STATE_STRING = process.env.NEXT_PUBLIC_OAUTH_STATE_STRING
@@ -35,6 +34,7 @@ export default function PreAuthenticated() {
         <IconGitHub size={5} mr={2} fill='black' />
         GitHub
       </ButtonV2>
+      <Box mx={0} minHeight={6} mt={3} />
     </>
   )
 }

@@ -42,7 +42,7 @@ export default function Landing() {
           </ResponsiveVerifierTile>
           <ContentContainer>
             <Box
-              style={css`
+              css={`
                 min-width: 0;
                 box-sizing: border-box;
                 display: -webkit-box;
@@ -55,9 +55,10 @@ export default function Landing() {
                 flex-direction: column;
                 max-width: 550px;
                 margin: 0 auto;
+                justify-content: space-around;
               `}
             >
-              {false ? <PostAuth /> : <PreAuth />}
+              {true ? <PostAuth /> : <PreAuth />}
               <CheckVerifiedStorageAmount />
             </Box>
           </ContentContainer>

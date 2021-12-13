@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
 
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
@@ -13,7 +13,9 @@ import {
   Input,
   InputLabelBase,
   Label,
-  Card
+  Card,
+  devices,
+  space
 } from '@glif/react-components'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
@@ -35,7 +37,7 @@ const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (!confirming && !confirmed) return ''
 }
 
-export default () => {
+export default function PostAuth() {
   const [filAddress, setFilAddress] = useState('')
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
@@ -141,7 +143,25 @@ export default () => {
 
   return (
     <>
-      <Box>
+      <Box
+        css={`
+          @media (min-width: ${devices.gt.tablet}) {
+            min-height: ${space('large')};
+          }
+        `}
+      />
+      <Box
+        display='flex'
+        width='100%'
+        justifyContent='space-between'
+        flexWrap='wrap'
+        mb={3}
+        css={`
+          @media (min-width: ${devices.gt.tablet}) {
+            margin-top: 48px;
+          }
+        `}
+      >
         <Text color='core.darkgray' textAlign='left' p='0' m={0}>
           Enter an address to grant an 32GiB verified data allowance
         </Text>
