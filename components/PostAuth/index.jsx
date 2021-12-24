@@ -145,7 +145,7 @@ export default function PostAuth() {
     <>
       <Box
         css={`
-          @media (min-width: ${devices.gt.tablet}) {
+          @media (min-width: ${devices.tablet}) {
             min-height: ${space('large')};
           }
         `}
@@ -157,7 +157,7 @@ export default function PostAuth() {
         flexWrap='wrap'
         mb={3}
         css={`
-          @media (min-width: ${devices.gt.tablet}) {
+          @media (min-width: ${devices.tablet}) {
             margin-top: 48px;
           }
         `}

@@ -17,7 +17,7 @@ import Education from './Education'
 import styled, { css } from 'styled-components'
 
 const LandingPageContentContainerStyled = styled(LandingPageContentContainer)`
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     grid-template-rows: none;
     grid-template-areas: 'icon content';
     min-height: 60vh;

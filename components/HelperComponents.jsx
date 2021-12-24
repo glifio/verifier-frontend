@@ -4,7 +4,7 @@ import { devices, space } from '@glif/react-components'
 export const ResponsiveVerifierTile = styled.div`
   cursor: default;
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     position: sticky;
     top: ${space()};
     height: 100%;
@@ -25,7 +25,7 @@ export const ContentContainer = styled.div`
     padding: 80px 10px 10px;
   }
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     padding: ${space('large')} 50px 50px 50px;
   }
 `
