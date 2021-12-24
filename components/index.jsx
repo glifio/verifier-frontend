@@ -36,6 +36,7 @@ export default function Landing() {
               title='Verifier'
               description='A Filecoin notary service.'
               imgSrc='/bg-verifier.jpg'
+              imgSrcHover='/bg-verifier-hover.jpg'
               small={false}
               large
             />
