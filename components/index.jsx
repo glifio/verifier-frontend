@@ -59,7 +59,7 @@ export default function Landing() {
                 justify-content: space-around;
               `}
             >
-              {true ? <PostAuth /> : <PreAuth />}
+              {jwt ? <PostAuth /> : <PreAuth />}
               <CheckVerifiedStorageAmount />
             </Box>
           </ContentContainer>
