@@ -8,6 +8,7 @@
     "start": "next start -p ${PORT-4000}"
   },
   "dependencies": {
+    "@glif/base-css": "^0.0.1",
     "@glif/filecoin-address": "^1.1.0",
     "@glif/filecoin-message-confirmer": "^1.1.0",
     "@glif/filecoin-rpc-client": "^1.1.0",
