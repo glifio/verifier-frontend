@@ -3,7 +3,7 @@ import axios from 'axios'
 const IS_PROD = process.env.NEXT_PUBLIC_IS_PROD
 
 // This simply formats error messages and sends them to our slack channel
-export default async (id, shouldSendToErrorPage, ...args) => {
+const reportError = async (id, shouldSendToErrorPage, ...args) => {
   let errorText = args.reduce(
     (err, ele) => {
       return `${err}\n${ele}`
@@ -19,3 +19,5 @@ export default async (id, shouldSendToErrorPage, ...args) => {
   }
   if (shouldSendToErrorPage) Router.push('/error/wallet-down')
 }
+
+export default reportError

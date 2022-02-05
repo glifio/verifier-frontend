@@ -23,21 +23,6 @@ const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 dayjs.extend(relativeTime)
 
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-]
-
 const Form = styled.form`
   display: flex;
   flex-direction: row;
@@ -87,33 +72,8 @@ export default () => {
     setLoading(false)
   }
 
-  const calcNextAllocationTime = () => {
-    // pick some far away date, before the verifier was made
-    if (dayjs(mostRecentAllocation).isBefore(dayjs('2020-01-01'))) {
-      return 'now'
-    }
-
-    const renewal = dayjs(mostRecentAllocation).add(30, 'day')
-    const renewalYear = renewal.format('YYYY')
-    const renewalMonth = months[Number(renewal.format('MM')) - 1]
-    const renewalDay = renewal.format('DD')
-    const time = renewal.format('HH:mm')
-
-    return `after ${renewalMonth} ${renewalDay}, ${renewalYear} at ${time}`
-  }
-
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      p={3}
-      mt={5}
-      minHeight={10}
-      width='100%'
-      maxWidth={13}
-      alignItems='center'
-      justifyContent='center'
-    >
+    <>
       <Box
         display='flex'
         width='100%'
@@ -121,15 +81,6 @@ export default () => {
         flexWrap='wrap'
         mb={3}
       >
-        <Text
-          color='core.nearblack'
-          textAlign='center'
-          p='0'
-          m={0}
-          textTransform='uppercase'
-        >
-          CHECK
-        </Text>
         <Text color='core.darkgray' textAlign='left' p='0' m={0}>
           Enter an address to check its status
         </Text>
@@ -228,6 +179,6 @@ export default () => {
           {err}
         </Label>
       </Box>
-    </Box>
+    </>
   )
 }
