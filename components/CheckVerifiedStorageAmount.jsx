@@ -15,7 +15,7 @@ import { validateAddressString } from '@glif/filecoin-address'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-import reportError from '../utils/reportError'
+import { logger } from '../logger'
 import truncateAddr from '../utils/truncateAddress'
 import niceBytes from '../utils/niceBytes'
 
@@ -47,9 +47,8 @@ export default () => {
         )
         if (res.status !== 200) {
           setErr(res.statusText)
-          reportError(
-            'components/CheckVerifiedStorageAmount.jsx:1',
-            false,
+          logger.error(
+            'Non 200 response when getting account-remaining-bytes',
             res.statusText
           )
         } else {
@@ -58,12 +57,10 @@ export default () => {
         }
       } catch (err) {
         setErr(err.response.data.error)
-        reportError(
-          'components/CheckVerifiedStorageAmount.jsx:2',
-          false,
+        logger.error(
+          'Error getting account-remaining-bytes',
           err.response.data.error,
-          err.message,
-          err.stack
+          err.message
         )
       }
     } else {

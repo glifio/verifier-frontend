@@ -35,7 +35,9 @@ module.exports = (phase) => ({
       process.env.NODE_STATUS_API_KEY || 'm787669344-2a9b90eb03dbff3e503c93c7',
     NEXT_PUBLIC_NODE_STATUS_API_ADDRESS:
       process.env.STATUS_API_ADDRESS ||
-      'https://api.uptimerobot.com/v2/getMonitors'
+      'https://api.uptimerobot.com/v2/getMonitors',
+    NEXT_PUBLIC_SENTRY_DSN: process.env.SENTRY_DSN,
+    NEXT_PUBLIC_SENTRY_ENV: process.env.SENTRY_ENV
   },
   publicRuntimeConfig: {
     // Will be available on both server and client

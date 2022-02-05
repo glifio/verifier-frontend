@@ -6,7 +6,7 @@ export default () => (
   <ErrorView
     title='Oops, something went wrong.'
     description="We've been notified of the issue."
-    linkDisplay='Follow @openworklabs for updates.'
-    linkhref='https://twitter.com/openworklabs'
+    linkDisplay='Follow @glifio for updates.'
+    linkhref='https://twitter.com/glifio'
   />
 )

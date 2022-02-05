@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import reportError from '../utils/reportError'
+import { logger } from '../logger'
 import ErrorView from './ErrorView'
 
 // This component catches all uncaught react and syncronous JS errors
@@ -16,7 +16,11 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    reportError('ErrorBoundary.jsx:1', false, error, errorInfo)
+    logger.error(
+      'ErrorBoundary',
+      error instanceof Error ? error.message : JSON.stringify(error),
+      errorInfo
+    )
   }
 
   render() {
@@ -25,8 +29,8 @@ class ErrorBoundary extends React.Component {
         <ErrorView
           title='Oops, something went wrong.'
           description="We've been notified of the issue."
-          linkDisplay='Follow @openworklabs for updates.'
-          linkhref='https://twitter.com/openworklabs'
+          linkDisplay='Follow @glifio for updates.'
+          linkhref='https://twitter.com/glifio'
         />
       )
     }

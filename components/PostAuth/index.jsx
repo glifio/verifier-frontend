@@ -21,7 +21,7 @@ import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
 import { useMessageConfirmation } from '../../lib/ConfirmMessage'
 import { getVerification, removeVerificationCid } from '../../utils/storage'
-import reportError from '../../utils/reportError'
+import { logger } from '../../logger'
 
 const Form = styled.form`
   display: flex;
@@ -55,12 +55,7 @@ export default function PostAuth() {
       } catch (err) {
         setFilAddress('')
         setErr(err.message)
-        reportError(
-          'components/PostAuth/index.jsx:3',
-          false,
-          err.message,
-          err.stack
-        )
+        logger.error('Error confirming msg from storage', err.message)
       }
       setConfirming(false)
     }
@@ -87,12 +82,10 @@ export default function PostAuth() {
       setCidToConfirm(res.data.cid)
       return res.data.cid
     } catch (err) {
-      reportError(
-        'components/PostAuth/index.jsx:1',
-        false,
+      logger.error(
+        'Error verifying client',
         err.response.data.error,
-        err.message,
-        err.stack
+        err.message
       )
       // throw a more readable error response from axios
       throw new Error(err.response.data.error)
@@ -112,12 +105,7 @@ export default function PostAuth() {
       } catch (error) {
         setErr(error.message)
         setFilAddress('')
-        reportError(
-          'components/PostAuth/index.jsx:2',
-          false,
-          err.message,
-          err.stack
-        )
+        logger.error('Error verifying client', err.message)
       }
       setConfirming(false)
     } else {
