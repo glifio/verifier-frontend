@@ -13,7 +13,9 @@ import {
   Input,
   InputLabelBase,
   Label,
-  Card
+  Card,
+  devices,
+  space
 } from '@glif/react-components'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
@@ -35,7 +37,7 @@ const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (!confirming && !confirmed) return ''
 }
 
-export default () => {
+export default function PostAuth() {
   const [filAddress, setFilAddress] = useState('')
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
@@ -142,22 +144,24 @@ export default () => {
   return (
     <>
       <Box
+        css={`
+          @media (min-width: ${devices.tablet}) {
+            min-height: ${space('large')};
+          }
+        `}
+      />
+      <Box
         display='flex'
         width='100%'
         justifyContent='space-between'
         flexWrap='wrap'
         mb={3}
+        css={`
+          @media (min-width: ${devices.tablet}) {
+            margin-top: 48px;
+          }
+        `}
       >
-        <Text
-          color='core.nearblack'
-          textAlign='center'
-          p='0'
-          m={0}
-          mr={1}
-          textTransform='uppercase'
-        >
-          REQUEST
-        </Text>
         <Text color='core.darkgray' textAlign='left' p='0' m={0}>
           Enter an address to grant an 32GiB verified data allowance
         </Text>
