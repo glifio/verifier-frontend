@@ -11,8 +11,6 @@ export default function PreAuthenticated() {
     <>
       <H2
         style={{
-          marginTop: 0,
-          marginBottom: '1em',
           fontWeight: 'normal',
           fontSize: fontSize('large'),
           lineHeight: '1.3em'

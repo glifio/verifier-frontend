@@ -30,7 +30,12 @@ module.exports = (phase) => ({
       process.env.LOTUS_NODE_JSONRPC || 'https://api.node.glif.io',
     NEXT_PUBLIC_NETWORK_IDENTIFIER: process.env.NETWORK_IDENTIFIER || 'mainnet',
     NEXT_PUBLIC_IS_PROD:
-      phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD
+      phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD,
+    NEXT_PUBLIC_NODE_STATUS_API_KEY:
+      process.env.NODE_STATUS_API_KEY || 'm787669344-2a9b90eb03dbff3e503c93c7',
+    NEXT_PUBLIC_NODE_STATUS_API_ADDRESS:
+      process.env.STATUS_API_ADDRESS ||
+      'https://api.uptimerobot.com/v2/getMonitors'
   },
   publicRuntimeConfig: {
     // Will be available on both server and client

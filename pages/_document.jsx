@@ -9,7 +9,8 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />)
         })
       const initialProps = await Document.getInitialProps(ctx)
       return {
@@ -37,7 +38,7 @@ export default class MyDocument extends Document {
           />
           <meta
             name='description'
-            content='A Filecoin web wallet, made by Open Work Labs.'
+            content='An automated Filecoin notary service.'
           />
           <meta
             name='keywords'

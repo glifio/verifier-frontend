@@ -6,15 +6,20 @@ import {
   LandingPageContainer,
   LandingPageContentContainer,
   space,
-  devices
+  devices,
+  useNetworkName,
+  fontSize,
+  theme,
+  P
 } from '@glif/react-components'
+import styled from 'styled-components'
 import { ResponsiveVerifierTile, ContentContainer } from './HelperComponents'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
 import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
 import { useJwt } from '../lib/JwtHandler'
 import Education from './Education'
-import styled, { css } from 'styled-components'
+import { TextBox } from './TextBox'
 
 const LandingPageContentContainerStyled = styled(LandingPageContentContainer)`
   @media (min-width: ${devices.tablet}) {
@@ -27,6 +32,10 @@ const LandingPageContentContainerStyled = styled(LandingPageContentContainer)`
 
 export default function Landing() {
   const { jwt } = useJwt()
+  const { networkName } = useNetworkName(
+    process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC
+  )
+
   return (
     <>
       <LandingPageContainer>
@@ -59,8 +68,29 @@ export default function Landing() {
                 justify-content: space-around;
               `}
             >
-              {jwt ? <PostAuth /> : <PreAuth />}
-              <CheckVerifiedStorageAmount />
+              {networkName && networkName !== 'Mainnet' ? (
+                <TextBox
+                  style={{
+                    background: theme.colors.core.primary
+                  }}
+                >
+                  <P
+                    css={`
+                      font-size: ${fontSize('large')};
+                      color: white;
+                      text-align: center;
+                    `}
+                  >
+                    We&apos;re sorry, the Glif Verifier only supports Mainnet
+                    right now!
+                  </P>
+                </TextBox>
+              ) : (
+                <>
+                  {jwt ? <PostAuth /> : <PreAuth />}
+                  <CheckVerifiedStorageAmount />
+                </>
+              )}
             </Box>
           </ContentContainer>
         </LandingPageContentContainerStyled>
