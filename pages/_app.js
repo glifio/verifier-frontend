@@ -1,10 +1,9 @@
+import '@glif/base-css'
 import App from 'next/app'
 import Head from 'next/head'
 import { theme, ThemeProvider } from '@glif/react-components'
 import { JwtProvider } from '../lib/JwtHandler'
 import { MessageConfirmerProvider } from '../lib/ConfirmMessage'
-import '../stylesheets/normalize.css'
-import '../stylesheets/styles.css'
 import ErrorBoundary from '../components/ErrorBoundary'
 
 class MyApp extends App {
