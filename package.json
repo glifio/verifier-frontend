@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "@glif/deployment-cli": "^2.0.0-alpha.16",
-    "babel-plugin-styled-components": "^1.10.7"
+    "babel-plugin-styled-components": "^2.0.2"
   }
 }
