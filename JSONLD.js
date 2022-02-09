@@ -41,13 +41,9 @@ export default {
   ],
   parentOrganization: {
     '@type': 'Organization',
-    name: 'Infinite Scroll',
-    description: 'Self-sustaining systems for the worlds to come.',
+    name: 'Glif',
+    description: 'Interoperable tools for the Filecoin network.',
     url: 'https://apps.glif.io',
-    sameAs: [
-      'https://github.com/infinitescroll',
-      'https://twitter.com/infinitescroll_',
-      'https://www.are.na/infinite-scroll'
-    ]
+    sameAs: ['https://github.com/glifio', 'https://twitter.com/glifio']
   }
 }

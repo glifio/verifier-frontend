@@ -24,6 +24,8 @@ module.exports = (phase) => ({
       'https://github-oauth.glif.io/callback',
     NEXT_PUBLIC_VERIFIER_URL:
       process.env.VERIFIER_URL || 'http://localhost:8080',
+    NEXT_PUBLIC_EXPLORER_URL:
+      process.env.EXPLORER_URL || 'https://explorer.glif.io',
     NEXT_PUBLIC_OAUTH_STATE_STRING:
       process.env.OAUTH_STATE_STRING || 'verifier',
     NEXT_PUBLIC_LOTUS_NODE_JSONRPC:
@@ -44,5 +46,6 @@ module.exports = (phase) => ({
   },
   serverRuntimeConfig: {
     // Will only be available on the server side
-  }
+  },
+  trailingSlash: true
 })

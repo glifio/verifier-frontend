@@ -1,7 +1,8 @@
 import { Component } from 'react'
 import axios from 'axios'
+import Router from 'next/router'
 import CallbackRedirect from '../components/CallbackRedirect'
-import reportError from '../utils/reportError'
+import { logger } from '../logger'
 
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
@@ -21,13 +22,12 @@ export default class Callback extends Component {
       return { jwt, err: null }
     } catch (err) {
       if (typeof window === 'undefined') {
-        // we redirect the error in the catch statement,
-        // since reportError can only make client side transitions
-        reportError('pages/callback.js:1', false, err.message, err.stack)
+        logger.error('Server side error getting jwt', err.message)
         res.writeHead(307, { Location: '/error' })
         res.end()
       } else {
-        reportError('pages/callback.js:1', true, err.message, err.stack)
+        logger.error('client side error getting jwt', err.message)
+        Router.push('/error')
       }
       return { jwt: '', err }
     }

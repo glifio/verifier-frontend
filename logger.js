@@ -1,7 +1,7 @@
 import { Logger } from '@glif/logger'
 
-const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN! as string
-const SENTRY_ENV = process.env.NEXT_PUBLIC_SENTRY_ENV! as string
+const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN
+const SENTRY_ENV = process.env.NEXT_PUBLIC_SENTRY_ENV
 
 export const logger = new Logger({
   sentryTraces: 0,

@@ -6,14 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p ${PORT-4000}",
+    "store-ipfs": "npx @glif/deployment-cli ipfs ./out $WEB3_STORAGE_TOKEN",
     "export": "next build && next export",
     "serve": "npx serve ./out"
   },
   "dependencies": {
+    "@babel/runtime": "^7.17.0",
     "@glif/base-css": "^0.0.1",
     "@glif/filecoin-address": "^2.0.0-alpha.5",
-    "@glif/filecoin-message-confirmer": "^1.1.1",
-    "@glif/filecoin-rpc-client": "^1.1.0",
+    "@glif/filecoin-message-confirmer": "^2.0.0-alpha.13",
+    "@glif/filecoin-rpc-client": "^2.0.0-alpha.13",
+    "@glif/logger": "^2.0.0-alpha.16",
     "@glif/react-components": "^2.0.0-alpha.40",
     "axios": "^0.25.0",
     "dayjs": "^1.10.7",
@@ -25,6 +28,7 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "@glif/deployment-cli": "^2.0.0-alpha.16",
     "babel-plugin-styled-components": "^1.10.7"
   }
 }

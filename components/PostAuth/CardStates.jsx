@@ -4,6 +4,8 @@ import { Label, StyledATag } from '@glif/react-components'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import truncateAddress from '../../utils/truncateAddress'
 
+const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
+
 export const Confirming = ({ err, cid }) => {
   return (
     <>
@@ -13,7 +15,7 @@ export const Confirming = ({ err, cid }) => {
         target='_blank'
         border='none'
         height='min-content'
-        href={`https://filfox.info/en/message/${cid}`}
+        href={`${EXPLORER}/message/${cid}`}
       >
         View your pending message.
       </StyledATag>
