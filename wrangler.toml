@@ -1,0 +1,19 @@
+name = "glif-verifier"
+type = "webpack"
+route = ''
+zone_id = ''
+usage_model = ''
+compatibility_flags = []
+workers_dev = true
+site = {bucket = "./out",entry-point = "workers-site"}
+compatibility_date = "2022-02-21"
+
+[env.calibration]
+name = "verifier-calibration"
+vars = { ENVIRONMENT = "calibration" }
+route = 'verifier-calibration.glif.link/*'
+
+[env.mainnet]
+name = "verifier-mainnet"
+vars = { ENVIRONMENT = "production" }
+route = 'verifier.glif.link/*'

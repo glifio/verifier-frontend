@@ -8,7 +8,9 @@
     "start": "next start -p ${PORT-4000}",
     "store-ipfs": "npx @glif/deployment-cli ipfs ./out $WEB3_STORAGE_TOKEN",
     "export": "next build && next export",
-    "serve": "npx serve ./out"
+    "serve": "npx serve ./out",
+    "publish:calibration": "wrangler publish --env calibration",
+    "publish:mainnet": "wrangler publish --env mainnet"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.0",
@@ -28,6 +30,7 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
+    "@cloudflare/wrangler": "^1.19.8",
     "@glif/deployment-cli": "^2.0.0-alpha.16",
     "babel-plugin-styled-components": "^1.10.7"
   }
