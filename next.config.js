@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const path = require('path')
 const {
   PHASE_PRODUCTION_BUILD,

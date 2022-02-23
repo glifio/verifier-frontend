@@ -67,7 +67,7 @@ export default function PostAuth() {
       )
       setFilAddress(pendingVerification.address)
     }
-  }, [confirming, confirm, setConfirming, setErr])
+  }, [confirming, confirm, setConfirming, setErr, err])
 
   const verify = async (jwt, filAddress) => {
     try {

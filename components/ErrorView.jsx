@@ -13,7 +13,6 @@ const ErrorView = ({ title, description, linkDisplay, linkhref }) => (
     <Box
       width='100%'
       maxWidth={13}
-      minHeight={10}
       p={3}
       border={1}
       borderRadius={2}

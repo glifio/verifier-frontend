@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint-fix": "npm run lint -- --fix",
     "start": "next start -p ${PORT-4000}",
     "store-ipfs": "npx @glif/deployment-cli ipfs ./out $WEB3_STORAGE_TOKEN",
     "export": "next build && next export",
@@ -30,8 +32,12 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "@cloudflare/wrangler": "^1.19.8",
-    "@glif/deployment-cli": "^2.0.0-alpha.16",
-    "babel-plugin-styled-components": "^1.10.7"
+    "@glif/deployment-cli": "^2.0.0-beta.2",
+    "babel-plugin-styled-components": "^1.10.7",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "12.1.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "prettier": "2.4.1"
   }
 }

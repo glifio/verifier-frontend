@@ -1,33 +1,6 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    jest: true
-  },
-  extends: [
-    'plugin:prettier/recommended',
-    'plugin:react/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'airbnb',
-    'prettier',
-    'prettier/react'
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
-  },
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    allowImportExportEverywhere: false
-  },
-  plugins: ['prettier', 'react', 'jsx-a11y', 'react-hooks'],
+  extends: ['plugin:prettier/recommended', 'next/core-web-vitals', 'prettier'],
+  plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 0,
@@ -48,6 +21,14 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'jsx-a11y/anchor-is-valid': 0,
     'no-shadow': 0,
-    camelcase: 0
+    camelcase: 0,
+    'import/no-named-as-default': 0,
+    'import/no-anonymous-default-export': 0,
+    'no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_'
+      }
+    ]
   }
 }

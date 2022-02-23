@@ -15,7 +15,7 @@ export const JwtProvider = ({ children }) => {
       )
       if (jwt) setJwt(jwt)
     }
-  })
+  }, [setJwt])
 
   const storeJwt = (jwt) => {
     setJwt(jwt)

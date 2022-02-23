@@ -35,6 +35,7 @@ export default () => {
   const [err, setErr] = useState('')
   const [loading, setLoading] = useState(false)
   const [remainingBytes, setRemainingBytes] = useState(null)
+  // eslint-disable-next-line
   const [mostRecentAllocation, setMostRecentAllocation] = useState('')
   const onSubmit = async (e) => {
     e.preventDefault()

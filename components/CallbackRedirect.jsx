@@ -10,7 +10,7 @@ export default ({ jwt }) => {
       storeJwt(jwt)
       router.replace('/')
     }
-  }, [jwt])
+  }, [router, storeJwt, jwt])
 
   return null
 }
