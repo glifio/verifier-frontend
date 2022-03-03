@@ -21,10 +21,16 @@ module.exports = (phase) => ({
     NEXT_PUBLIC_GITHUB_REDIRECT_URL:
       process.env.GITHUB_REDIRECT_URL ||
       'https://github-oauth.glif.io/callback',
-    NEXT_PUBLIC_VERIFIER_URL:
-      process.env.VERIFIER_URL || 'http://localhost:8080',
+    NEXT_PUBLIC_HOME_URL: process.env.HOME_URL || 'https://glif.io',
+    NEXT_PUBLIC_BLOG_URL: process.env.BLOG_URL || 'https://glif.io/blog',
+    NEXT_PUBLIC_WALLET_URL:
+      process.env.WALLET_URL || 'https://calibration.wallet.glif.io',
+    NEXT_PUBLIC_SAFE_URL:
+      process.env.SAFE_URL || 'https://calibration.safe.glif.io',
     NEXT_PUBLIC_EXPLORER_URL:
-      process.env.EXPLORER_URL || 'https://explorer.glif.io',
+      process.env.EXPLORER_URL || 'https://calibration.explorer.glif.io',
+    NEXT_PUBLIC_VERIFIER_URL:
+      process.env.VERIFIER_URL || 'https://calibration.verify.glif.io',
     NEXT_PUBLIC_OAUTH_STATE_STRING:
       process.env.OAUTH_STATE_STRING || 'verifier',
     NEXT_PUBLIC_LOTUS_NODE_JSONRPC:
