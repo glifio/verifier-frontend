@@ -47,8 +47,8 @@ export default function Landing() {
                   text-align: center;
                 `}
               >
-                We&apos;re sorry, the Glif Verifier only supports Mainnet
-                right now!
+                We&apos;re sorry, the Glif Verifier only supports Mainnet right
+                now!
               </P>
             </TextBox>
           ) : (
