@@ -72,17 +72,7 @@ export default () => {
 
   return (
     <>
-      <Box
-        display='flex'
-        width='100%'
-        justifyContent='space-between'
-        flexWrap='wrap'
-        mb={3}
-      >
-        <Text color='core.darkgray' textAlign='left' p='0' m={0}>
-          Enter an address to check its status
-        </Text>
-      </Box>
+      <Text color='core.darkgray'>Enter an address to check its status</Text>
       <Card
         p={0}
         border={0}

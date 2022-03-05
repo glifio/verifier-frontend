@@ -5,8 +5,7 @@ import {
   LandingPageContent,
   OneColumnLargeText,
   Page,
-  useNetworkName,
-  fontSize
+  useNetworkName
 } from '@glif/react-components'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
@@ -34,7 +33,8 @@ export default function Landing() {
         {networkName && networkName !== 'Mainnet' ? (
           <OneColumnLargeText className='primary'>
             <p>
-              We&apos;re sorry, the Glif Verifier only supports Mainnet right now!
+              We&apos;re sorry, the Glif Verifier only supports Mainnet right
+              now!
             </p>
           </OneColumnLargeText>
         ) : (

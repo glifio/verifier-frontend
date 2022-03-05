@@ -11,7 +11,7 @@ export default function PreAuthenticated() {
   return (
     <>
       <h2>Connect</h2>
-      <ButtonV2 large onClick={() => window.location.href = url}>
+      <ButtonV2 large onClick={() => (window.location.href = url)}>
         <IconGitHub size={5} />
         GitHub
       </ButtonV2>
