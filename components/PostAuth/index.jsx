@@ -132,13 +132,6 @@ export default function PostAuth() {
   return (
     <>
       <Box
-        css={`
-          @media (min-width: ${devices.tablet}) {
-            min-height: ${space('large')};
-          }
-        `}
-      />
-      <Box
         display='flex'
         width='100%'
         justifyContent='space-between'
