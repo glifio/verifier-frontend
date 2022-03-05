@@ -3,18 +3,16 @@ import {
   AppTile,
   LandingPageColumns,
   LandingPageContent,
+  OneColumnLargeText,
   Page,
   useNetworkName,
-  fontSize,
-  theme,
-  P
+  fontSize
 } from '@glif/react-components'
 import PreAuth from './PreAuth'
 import PostAuth from './PostAuth'
 import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
 import { useJwt } from '../lib/JwtHandler'
 import Education from './Education'
-import { TextBox } from './TextBox'
 
 export default function Landing() {
   const { jwt } = useJwt()
@@ -23,7 +21,7 @@ export default function Landing() {
   )
 
   return (
-    <Page hideAppHeader>
+    <Page hideAppHeader preFooter={<Education />}>
       <LandingPageColumns>
         <AppTile
           title='Verifier'
@@ -33,32 +31,18 @@ export default function Landing() {
           small={false}
           large
         />
-        <LandingPageContent>
-          {networkName && networkName !== 'Mainnet' ? (
-            <TextBox
-              style={{
-                background: theme.colors.core.primary
-              }}
-            >
-              <P
-                css={`
-                  font-size: ${fontSize('large')};
-                  color: white;
-                  text-align: center;
-                `}
-              >
-                We&apos;re sorry, the Glif Verifier only supports Mainnet right
-                now!
-              </P>
-            </TextBox>
-          ) : (
-            <>
-              {jwt ? <PostAuth /> : <PreAuth />}
-              <CheckVerifiedStorageAmount />
-            </>
-          )}
-          <Education />
-        </LandingPageContent>
+        {networkName && networkName !== 'Mainnet' ? (
+          <OneColumnLargeText className='primary'>
+            <p>
+              We&apos;re sorry, the Glif Verifier only supports Mainnet right now!
+            </p>
+          </OneColumnLargeText>
+        ) : (
+          <LandingPageContent>
+            {jwt ? <PostAuth /> : <PreAuth />}
+            <CheckVerifiedStorageAmount />
+          </LandingPageContent>
+        )}
       </LandingPageColumns>
     </Page>
   )
