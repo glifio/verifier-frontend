@@ -16,15 +16,14 @@ const getJWT = async (code, state) => {
 }
 
 export default class Callback extends Component {
-  static async getInitialProps({ query, res }) {
+  static async getInitialProps({ query }) {
     try {
       const jwt = await getJWT(query.code, query.state)
       return { jwt, err: null }
     } catch (err) {
       if (typeof window === 'undefined') {
+        // this should never happen in prod bc we build app statically
         logger.error('Server side error getting jwt', err.message)
-        res.writeHead(307, { Location: '/error' })
-        res.end()
       } else {
         logger.error('client side error getting jwt', err.message)
         Router.push('/error')
