@@ -9,11 +9,11 @@ site = {bucket = "./out",entry-point = "workers-site"}
 compatibility_date = "2022-02-21"
 
 [env.calibration]
-name = "verifier-calibration"
+name = "verify-calibration"
 vars = { ENVIRONMENT = "calibration" }
-route = 'verifier-calibration.glif.link/*'
+route = 'verify-calibration.glif.link/*'
 
 [env.mainnet]
-name = "verifier-mainnet"
+name = "verify-mainnet"
 vars = { ENVIRONMENT = "production" }
-route = 'verifier.glif.link/*'
+route = 'verify.glif.link/*'
