@@ -4,7 +4,6 @@ import {
   LandingPageColumns,
   LandingPageContent,
   OneColumnLargeText,
-  Page,
   useNetworkName
 } from '@glif/react-components'
 import PreAuth from './PreAuth'
@@ -12,6 +11,7 @@ import PostAuth from './PostAuth'
 import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
 import { useJwt } from '../lib/JwtHandler'
 import Education from './Education'
+import VerifierPage from './VerifierPage'
 
 export default function Landing() {
   const { jwt } = useJwt()
@@ -20,7 +20,7 @@ export default function Landing() {
   )
 
   return (
-    <Page hideAppHeader preFooter={<Education />}>
+    <VerifierPage preFooter={<Education />}>
       <LandingPageColumns>
         <AppTile
           title='Verifier'
@@ -44,6 +44,6 @@ export default function Landing() {
           </LandingPageContent>
         )}
       </LandingPageColumns>
-    </Page>
+    </VerifierPage>
   )
 }
