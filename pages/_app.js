@@ -12,7 +12,7 @@ class MyApp extends App {
     return (
       <>
         <Head>
-          <title>Glif Verification</title>
+          <title>GLIF Verify</title>
           <meta
             name='description'
             content='A Filecoin verifier, made by Open Work Labs.'

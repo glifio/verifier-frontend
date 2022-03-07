@@ -1,6 +1,6 @@
 {
   "name": "filecoin-verifier-frontend",
-  "version": "1.2.0",
+  "version": "1.2.1-calibration.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -22,11 +22,12 @@
     "@glif/filecoin-rpc-client": "^2.0.0-alpha.13",
     "@glif/logger": "^2.0.0-alpha.16",
     "@glif/react-components": "^2.0.0-alpha.55",
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "dayjs": "^1.10.7",
     "next": "^12.1.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2",
     "styled-components": "^5.3.3",
     "styled-system": "^5.1.5",
     "uuid": "^8.3.0"
