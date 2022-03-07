@@ -22,7 +22,7 @@
     "@glif/filecoin-rpc-client": "^2.0.0-alpha.13",
     "@glif/logger": "^2.0.0-alpha.16",
     "@glif/react-components": "^2.0.0-alpha.54",
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "dayjs": "^1.10.7",
     "next": "^12.1.0",
     "react": "^17.0.2",
