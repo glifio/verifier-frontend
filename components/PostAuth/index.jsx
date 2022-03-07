@@ -14,8 +14,7 @@ import {
   InputLabelBase,
   Label,
   Card,
-  devices,
-  space
+  devices
 } from '@glif/react-components'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
@@ -131,13 +130,6 @@ export default function PostAuth() {
 
   return (
     <>
-      <Box
-        css={`
-          @media (min-width: ${devices.tablet}) {
-            min-height: ${space('large')};
-          }
-        `}
-      />
       <Box
         display='flex'
         width='100%'

@@ -2,7 +2,7 @@ import React from 'react'
 
 import ErrorView from '../components/ErrorView'
 
-export default () => (
+const Error = () => (
   <ErrorView
     title='Oops, something went wrong.'
     description="We've been notified of the issue."
@@ -10,3 +10,5 @@ export default () => (
     linkhref='https://twitter.com/glifio'
   />
 )
+
+export default Error
