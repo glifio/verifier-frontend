@@ -1,10 +1,18 @@
+import { useCallback } from 'react'
+import { useRouter } from 'next/router'
 import {
   Page,
+  NetworkConnection,
   VerifierIconHeaderFooter
 } from '@glif/react-components'
 import { GLIF_DISCORD } from '../constants'
 
 export default function VerifierPage({ children, ...rest }) {
+  const router = useRouter()
+  const onNodeDisconnect = useCallback(() => {
+    navigate(router, { pageUrl: PAGE.NODE_DISCONNECTED })
+  }, [router])
+
   return (
     <Page
       appIcon={<VerifierIconHeaderFooter />}
@@ -26,6 +34,14 @@ export default function VerifierPage({ children, ...rest }) {
           url: GLIF_DISCORD
         }
       ]}
+      connection={
+        <NetworkConnection
+          lotusApiAddr={process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC}
+          apiKey={process.env.NEXT_PUBLIC_NODE_STATUS_API_KEY}
+          statusApiAddr={process.env.NEXT_PUBLIC_NODE_STATUS_API_ADDRESS}
+          errorCallback={onNodeDisconnect}
+        />
+      }
       {...rest}
     >
       {children}
