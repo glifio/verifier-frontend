@@ -14,8 +14,7 @@ import {
   InputLabelBase,
   Label,
   Card,
-  devices,
-  space
+  devices
 } from '@glif/react-components'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
