@@ -7,9 +7,7 @@ const Error = () => (
     <OneColumnCentered>
       <ErrorView
         title='Oops, something went wrong.'
-        description="We've been notified of the issue."
-        linkDisplay='Follow @glifio for updates.'
-        linkhref='https://twitter.com/glifio'
+        description="We've been notified of the issue and expect to be back up and running again shortly."
       />
     </OneColumnCentered>
   </VerifierPage>
