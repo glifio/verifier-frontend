@@ -39,7 +39,7 @@ Confirming.defaultProps = {
 
 export const Confirmed = ({ address, cid, allowance }) => {
   const allowanceGbBig = allowance / 1073741824n
-  const allowanceGbNr = Number(maxAllowanceGbBig)
+  const allowanceGbNr = Number(allowanceGbBig)
   return (
     <>
       <Label display='inline-block' my={0} mx={2}>

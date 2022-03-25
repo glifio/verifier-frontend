@@ -258,7 +258,11 @@ export default function PostAuth() {
       <Box pt={0} mx={0} textAlign='center' minHeight={6} mt={3}>
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
-          <Confirmed address={filAddress} cid={cidToConfirm} allowance={allowance} />
+          <Confirmed
+            address={filAddress}
+            cid={cidToConfirm}
+            allowance={allowance}
+          />
         )}
         <Label color='status.fail.background' m={0}>
           {err}
