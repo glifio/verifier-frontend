@@ -35,7 +35,7 @@ export default function Education() {
         <QA
           question='What is a verified Filecoin address?'
           answers={[
-            props => (
+            (props) => (
               <Text {...props}>
                 Anyone who is likely to be using Filecoin to store and use real
                 data can verify their Filecoin address to receive DataCap.
@@ -47,7 +47,7 @@ export default function Education() {
         <QA
           question='What is a Filecoin Notary?'
           answers={[
-            props => (
+            (props) => (
               <Text {...props}>
                 A Notary is someone who is charged with allocating the amount of
                 DataCap an address is likely to require, and granting that
@@ -64,7 +64,7 @@ export default function Education() {
         <QA
           question='Why does it matter?'
           answers={[
-            props => (
+            (props) => (
               <Text {...props}>
                 Data stored by verified addresses makes Filecoin storage miners
                 eligible for more block rewards. This drives miners to compete
@@ -86,12 +86,11 @@ export default function Education() {
         <QA
           question='How can I renew my address verification?'
           answers={[
-            props => (
+            (props) => (
               <Text {...props}>
-                Once you&rsquo;ve exhausted your DataCap, you can come back here and
-                follow the same steps. This process can only be repeated at most
-                once per 30 days. Please note that each DataCap request will
-                need to use a new Filecoin address.
+                Once you&rsquo;ve exhausted your DataCap, you can come back here
+                and follow the same steps. This process can only be repeated at
+                most once per 30 days.
               </Text>
             )
           ]}
@@ -99,9 +98,10 @@ export default function Education() {
         <QA
           question='How do I verify my address?'
           answers={[
-            props => (
+            (props) => (
               <Text {...props}>
-                Simply login with GitHub and enter your Filecoin address. We&rsquo;ll grant that address DataCap.
+                Simply login with GitHub and enter your Filecoin address.
+                We&rsquo;ll grant that address DataCap.
               </Text>
             )
           ]}
@@ -109,9 +109,13 @@ export default function Education() {
         <QA
           question='How much DataCap will I receive?'
           answers={[
-            props => (
+            (props) => (
               <Text {...props}>
-                As long as your GitHub account is at least 180 days old, you will receive at least 64GiB of DataCap. Any amount above 64GiB of DataCap allocation granted depends on your GitHub account age and activity and how many verified deals your Filecoin Address has made on chain.
+                As long as your GitHub account is at least 180 days old, you
+                will receive at least 64GiB of DataCap. Any amount above 64GiB
+                of DataCap allocation granted depends on your GitHub account age
+                and activity and how many verified deals your Filecoin Address
+                has made on chain.
               </Text>
             )
           ]}
@@ -119,7 +123,7 @@ export default function Education() {
         <QA
           question='How can I find miners who will take my deals?'
           answers={[
-            props => (
+            (props) => (
               <Text {...props}>
                 There is a list of miners offering special pricing for clients
                 storing verified deals{' '}
@@ -134,7 +138,7 @@ export default function Education() {
         <QA
           question='What can I do with DataCap?'
           answers={[
-            props => (
+            (props) => (
               <Text {...props}>
                 Clients with DataCap have increased power on the network. You
                 can find a list of suggestions on how to best make use of that
