@@ -88,7 +88,7 @@ export default function Education() {
           answers={[
             props => (
               <Text {...props}>
-                Once you’ve exhausted your DataCap, you can come back here and
+                Once you&rsquo;ve exhausted your DataCap, you can come back here and
                 follow the same steps. This process can only be repeated at most
                 once per 30 days. Please note that each DataCap request will
                 need to use a new Filecoin address.
@@ -101,7 +101,7 @@ export default function Education() {
           answers={[
             props => (
               <Text {...props}>
-                Simply login with GitHub and enter your Filecoin address. We'll grant that address DataCap.
+                Simply login with GitHub and enter your Filecoin address. We&rsquo;ll grant that address DataCap.
               </Text>
             )
           ]}
