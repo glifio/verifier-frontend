@@ -4,7 +4,7 @@ const QA = ({ question, answers }) => (
   <Box m={4} maxWidth={12}>
     <Title color='core.nearblack'>{question}</Title>
     {answers.map((AnswerComponent, i) => (
-      <AnswerComponent key={i} />
+      <AnswerComponent mt={4} color='core.darkgray' key={i} />
     ))}
   </Box>
 )
@@ -35,8 +35,8 @@ export default function Education() {
         <QA
           question='What is a verified Filecoin address?'
           answers={[
-            ({ ...props }) => (
-              <Text mt={4} color='core.darkgray' {...props}>
+            (props) => (
+              <Text {...props}>
                 Anyone who is likely to be using Filecoin to store and use real
                 data can verify their Filecoin address to receive DataCap.
                 DataCap can be spent in storage deals with miners.
@@ -47,8 +47,8 @@ export default function Education() {
         <QA
           question='What is a Filecoin Notary?'
           answers={[
-            ({ ...props }) => (
-              <Text mt={4} color='core.darkgray' {...props}>
+            (props) => (
+              <Text {...props}>
                 A Notary is someone who is charged with allocating the amount of
                 DataCap an address is likely to require, and granting that
                 address a DataCap up to that amount. This app is one example of
@@ -64,8 +64,8 @@ export default function Education() {
         <QA
           question='Why does it matter?'
           answers={[
-            ({ ...props }) => (
-              <Text mt={4} color='core.darkgray' {...props}>
+            (props) => (
+              <Text {...props}>
                 Data stored by verified addresses makes Filecoin storage miners
                 eligible for more block rewards. This drives miners to compete
                 for verified deals by improving quality of service. You can read
@@ -86,12 +86,11 @@ export default function Education() {
         <QA
           question='How can I renew my address verification?'
           answers={[
-            ({ ...props }) => (
-              <Text mt={4} color='core.darkgray' {...props}>
-                Once you’ve exhausted your DataCap, you can come back here and
-                follow the same steps. This process can only be repeated at most
-                once per 30 days. Please note that each DataCap request will
-                need to use a new Filecoin address.
+            (props) => (
+              <Text {...props}>
+                Once you&rsquo;ve exhausted your DataCap, you can come back here
+                and follow the same steps. This process can only be repeated at
+                most once per 30 days.
               </Text>
             )
           ]}
@@ -99,12 +98,24 @@ export default function Education() {
         <QA
           question='How do I verify my address?'
           answers={[
-            ({ ...props }) => (
-              <Text mt={4} color='core.darkgray' {...props}>
-                This app provides small data caps to anyone who has a GitHub
-                account over 180 days old to make testing and experimentation
-                easy. Simply link your GitHub account to a Filecoin address, and
-                we’ll grant that address 32 GiB of DataCap.
+            (props) => (
+              <Text {...props}>
+                Simply login with GitHub and enter your Filecoin address.
+                We&rsquo;ll grant that address DataCap.
+              </Text>
+            )
+          ]}
+        />
+        <QA
+          question='How much DataCap will I receive?'
+          answers={[
+            (props) => (
+              <Text {...props}>
+                As long as your GitHub account is at least 180 days old, you
+                will receive at least 64GiB of DataCap. Any amount above 64GiB
+                of DataCap allocation granted depends on your GitHub account age
+                and activity and how many verified deals your Filecoin Address
+                has made on chain.
               </Text>
             )
           ]}
@@ -112,8 +123,8 @@ export default function Education() {
         <QA
           question='How can I find miners who will take my deals?'
           answers={[
-            ({ ...props }) => (
-              <Text mt={4} color='core.darkgray' {...props}>
+            (props) => (
+              <Text {...props}>
                 There is a list of miners offering special pricing for clients
                 storing verified deals{' '}
                 <StyledATag href='https://github.com/filecoin-project/notary-governance/issues/8'>
@@ -127,8 +138,8 @@ export default function Education() {
         <QA
           question='What can I do with DataCap?'
           answers={[
-            ({ ...props }) => (
-              <Text mt={4} color='core.darkgray' {...props}>
+            (props) => (
+              <Text {...props}>
                 Clients with DataCap have increased power on the network. You
                 can find a list of suggestions on how to best make use of that
                 DataCap{' '}

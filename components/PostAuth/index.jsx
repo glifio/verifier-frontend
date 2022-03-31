@@ -41,6 +41,7 @@ export default function PostAuth() {
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
+  const [allowance, setAllowance] = useState(BigInt(0))
   const [err, setErr] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
@@ -79,6 +80,7 @@ export default function PostAuth() {
       )
       if (res.status !== 200) throw new Error(res.data.error)
       setCidToConfirm(res.data.cid)
+      setAllowance(BigInt(res.data.allowance))
       return res.data.cid
     } catch (err) {
       logger.error(
@@ -143,7 +145,7 @@ export default function PostAuth() {
         `}
       >
         <Text color='core.darkgray' textAlign='left' p='0' m={0}>
-          Enter an address to grant an 32GiB verified data allowance
+          Enter an address to grant a verified data allowance
         </Text>
       </Box>
       <Card
@@ -256,7 +258,11 @@ export default function PostAuth() {
       <Box pt={0} mx={0} textAlign='center' minHeight={6} mt={3}>
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
-          <Confirmed address={filAddress} cid={cidToConfirm} />
+          <Confirmed
+            address={filAddress}
+            cid={cidToConfirm}
+            allowance={allowance}
+          />
         )}
         <Label color='status.fail.background' m={0}>
           {err}

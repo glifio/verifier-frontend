@@ -1,5 +1,5 @@
 import React from 'react'
-import { string } from 'prop-types'
+import { string, bigint } from 'prop-types'
 import { Label, StyledATag } from '@glif/react-components'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import truncateAddress from '../../utils/truncateAddress'
@@ -37,11 +37,13 @@ Confirming.defaultProps = {
   err: ''
 }
 
-export const Confirmed = ({ address, cid }) => {
+export const Confirmed = ({ address, cid, allowance }) => {
+  const allowanceGbBig = allowance / 1073741824n
+  const allowanceGbNr = Number(allowanceGbBig)
   return (
     <>
       <Label display='inline-block' my={0} mx={2}>
-        Granted a 32GiB verified data allowance to:{' '}
+        Granted a {allowanceGbNr}GiB verified data allowance to:{' '}
         <StyledATag
           display='inline-block'
           target='_blank'
@@ -67,5 +69,6 @@ export const Confirmed = ({ address, cid }) => {
 
 Confirmed.propTypes = {
   address: ADDRESS_PROPTYPE,
-  cid: string.isRequired
+  cid: string.isRequired,
+  allowance: bigint.isRequired
 }
