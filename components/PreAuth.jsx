@@ -1,6 +1,6 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { IconGitHub, ButtonV2 } from '@glif/react-components'
+import { IconGitHub, ButtonV2Link } from '@glif/react-components'
 
 const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const OAUTH_STATE_STRING = process.env.NEXT_PUBLIC_OAUTH_STATE_STRING
@@ -11,10 +11,10 @@ export default function PreAuthenticated() {
   return (
     <>
       <h2>Connect</h2>
-      <ButtonV2 large onClick={() => (window.location.href = url)}>
+      <ButtonV2Link large href={url}>
         <IconGitHub size={5} />
         GitHub
-      </ButtonV2>
+      </ButtonV2Link>
     </>
   )
 }
