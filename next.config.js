@@ -1,4 +1,6 @@
 const path = require('path')
+const pkgjson = require('./package.json')
+
 const {
   PHASE_PRODUCTION_BUILD,
   PHASE_PRODUCTION_SERVER
@@ -16,6 +18,8 @@ module.exports = (phase) => ({
     return config
   },
   env: {
+    NEXT_PUBLIC_PACKAGE_NAME: pkgjson.name,
+    NEXT_PUBLIC_PACKAGE_VERSION: pkgjson.version,
     NEXT_PUBLIC_GITHUB_CLIENT_ID:
       process.env.GITHUB_CLIENT_ID || '8e972b0441d34ebd94a3',
     NEXT_PUBLIC_GITHUB_REDIRECT_URL:
