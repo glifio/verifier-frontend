@@ -15,7 +15,7 @@
     "publish:mainnet": "wrangler publish --env mainnet"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.0",
+    "@babel/runtime": "^7.18.0",
     "@glif/base-css": "^0.0.18",
     "@glif/filecoin-address": "^2.0.0-alpha.5",
     "@glif/filecoin-message-confirmer": "^2.0.0-alpha.13",
