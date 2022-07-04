@@ -15,7 +15,7 @@ export const Confirming = ({ err, cid }) => {
         target='_blank'
         border='none'
         height='min-content'
-        href={`${EXPLORER}/message/${cid}`}
+        href={`${EXPLORER}/message/?cid=${cid}`}
       >
         View your pending message.
       </StyledATag>
@@ -59,7 +59,7 @@ export const Confirmed = ({ address, cid, allowance }) => {
         target='_blank'
         border='none'
         height='min-content'
-        href={`${EXPLORER}/message/${cid}`}
+        href={`${EXPLORER}/message/?cid=${cid}`}
       >
         VIEW
       </StyledATag>
