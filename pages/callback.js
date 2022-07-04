@@ -1,38 +1,41 @@
-import { Component } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import CallbackRedirect from '../components/CallbackRedirect'
-import { logger } from '../logger'
 
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
-const getJWT = async (code, state) => {
-  const res = await axios.post(`${VERIFIER_URL}/oauth/github`, {
-    code,
-    state
-  })
-  if (res.status !== 200) throw new Error(res.statusText)
-  return res.data.jwt
-}
+export default function Callback() {
+  const router = useRouter()
+  const [gettingJwt, setGettingJwt] = useState(false)
+  const [jwt, setJwt] = useState('')
 
-export default class Callback extends Component {
-  static async getInitialProps({ query }) {
-    try {
-      const jwt = await getJWT(query.code, query.state)
-      return { jwt, err: null }
-    } catch (err) {
-      if (typeof window === 'undefined') {
-        // this should never happen in prod bc we build app statically
-        logger.error('Server side error getting jwt', err.message)
-      } else {
-        logger.error('client side error getting jwt', err.message)
-        Router.push('/error')
-      }
-      return { jwt: '', err }
+  useEffect(() => {
+    const getJWT = async () => {
+      const res = await axios.post(`${VERIFIER_URL}/oauth/github`, {
+        code: router.query.code,
+        state: router.query.state
+      })
+      if (res.status !== 200) throw new Error(res.statusText)
+      setJwt(res.data.jwt)
     }
-  }
 
-  render() {
-    return <CallbackRedirect jwt={this.props.jwt} />
-  }
+    if (!gettingJwt && !jwt && !!router.query.code && !!router.query.state) {
+      setGettingJwt(true)
+      try {
+        getJWT()
+      } finally {
+        setGettingJwt(false)
+      }
+    }
+  }, [
+    gettingJwt,
+    setGettingJwt,
+    setJwt,
+    jwt,
+    router.query.code,
+    router.query.state
+  ])
+
+  return <> {gettingJwt && <CallbackRedirect jwt={jwt} />}</>
 }
