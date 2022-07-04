@@ -48,7 +48,7 @@ export const Confirmed = ({ address, cid, allowance }) => {
           display='inline-block'
           target='_blank'
           rel='noopener noreferrer'
-          href={`https://filfox.info/en/address/${address}`}
+          href={`${EXPLORER}/actor/?address=${address}`}
         >
           {truncateAddress(address)}
         </StyledATag>
@@ -59,7 +59,7 @@ export const Confirmed = ({ address, cid, allowance }) => {
         target='_blank'
         border='none'
         height='min-content'
-        href={`https://filfox.info/en/message/${cid}`}
+        href={`${EXPLORER}/message/${cid}`}
       >
         VIEW
       </StyledATag>
