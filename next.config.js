@@ -34,7 +34,7 @@ module.exports = (phase) => ({
     NEXT_PUBLIC_EXPLORER_URL:
       process.env.EXPLORER_URL || 'https://explorer-calibration.glif.link',
     NEXT_PUBLIC_VERIFIER_URL:
-      process.env.VERIFIER_URL || 'https://verify-calibration.glif.link',
+      process.env.VERIFIER_URL || 'https://mainnet.verify.backend.glif.io',
     NEXT_PUBLIC_OAUTH_STATE_STRING:
       process.env.OAUTH_STATE_STRING || 'verifier',
     NEXT_PUBLIC_LOTUS_NODE_JSONRPC:

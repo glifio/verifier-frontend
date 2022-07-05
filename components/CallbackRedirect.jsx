@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useJwt } from '../lib/JwtHandler'
 
-export default ({ jwt }) => {
+export default function CallbackRedirect({ jwt }) {
   const { storeJwt } = useJwt()
   const router = useRouter()
   useEffect(() => {

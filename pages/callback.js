@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { ErrorBox, LoadingScreen, OneColumn } from '@glif/react-components'
 import { useRouter } from 'next/router'
 import CallbackRedirect from '../components/CallbackRedirect'
+import { logger } from '../logger'
 
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
@@ -9,6 +11,7 @@ export default function Callback() {
   const router = useRouter()
   const [gettingJwt, setGettingJwt] = useState(false)
   const [jwt, setJwt] = useState('')
+  const [jwtErr, setJwtErr] = useState('')
 
   useEffect(() => {
     const getJWT = async () => {
@@ -24,6 +27,9 @@ export default function Callback() {
       setGettingJwt(true)
       try {
         getJWT()
+      } catch (err) {
+        setJwtErr(err?.message || JSON.stringify(err))
+        logger.error(err?.message || JSON.stringify(err))
       } finally {
         setGettingJwt(false)
       }
@@ -37,5 +43,16 @@ export default function Callback() {
     router.query.state
   ])
 
-  return <> {gettingJwt && <CallbackRedirect jwt={jwt} />}</>
+  return (
+    <>
+      {gettingJwt && <LoadingScreen height='100vh' />}
+      {jwt && !jwtErr && !gettingJwt ? (
+        <CallbackRedirect jwt={jwt} />
+      ) : (
+        <OneColumn>
+          <ErrorBox>There was an error authenticating with GitHub.</ErrorBox>
+        </OneColumn>
+      )}
+    </>
+  )
 }
