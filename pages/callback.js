@@ -30,8 +30,6 @@ export default function Callback() {
       } catch (err) {
         setJwtErr(err?.message || JSON.stringify(err))
         logger.error(err?.message || JSON.stringify(err))
-      } finally {
-        setGettingJwt(false)
       }
     }
   }, [
@@ -45,14 +43,13 @@ export default function Callback() {
 
   return (
     <>
-      {gettingJwt && <LoadingScreen height='100vh' />}
-      {jwt && !jwtErr && !gettingJwt ? (
-        <CallbackRedirect jwt={jwt} />
-      ) : (
+      {jwtErr && (
         <OneColumn>
           <ErrorBox>There was an error authenticating with GitHub.</ErrorBox>
         </OneColumn>
       )}
+      {gettingJwt && !jwt && !jwtErr && <LoadingScreen height='100vh' />}
+      {jwt && !jwtErr && <CallbackRedirect jwt={jwt} />}
     </>
   )
 }
