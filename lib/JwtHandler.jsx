@@ -9,13 +9,13 @@ export const JwtProvider = ({ children }) => {
   const [jwt, setJwt] = useState('')
 
   useEffect(() => {
-    if (!!window && typeof window !== 'undefined') {
+    if (!!window && typeof window !== 'undefined' && !jwt) {
       const jwt = window.localStorage.getItem(
         `verifier-jwt:${NETWORK_IDENTIFIER}`
       )
       if (jwt) setJwt(jwt)
     }
-  }, [setJwt])
+  }, [jwt, setJwt])
 
   const storeJwt = (jwt) => {
     setJwt(jwt)
