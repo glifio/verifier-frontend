@@ -109,7 +109,7 @@ export default () => {
                 pl={3}
                 height='100%'
                 overflow='scroll'
-                placeholder='f1OwL...'
+                placeholder='f1...'
                 value={filAddress}
                 onChange={(e) => {
                   setMostRecentAllocation('')

@@ -189,7 +189,7 @@ export default function PostAuth() {
                   width='100%'
                   pr={8}
                   overflow='scroll'
-                  placeholder='f1OwL...'
+                  placeholder='f1...'
                   value={filAddress}
                   pl={3}
                   height='100%'
