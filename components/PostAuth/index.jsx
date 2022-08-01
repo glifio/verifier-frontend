@@ -8,7 +8,7 @@ const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 import {
   Box,
   Button,
-  Loading,
+  LoadingIcon,
   Text,
   Input,
   InputLabelBase,
@@ -233,7 +233,7 @@ export default function PostAuth() {
             </Text>
             {confirming && (
               <Box mr={2}>
-                <Loading />
+                <LoadingIcon />
               </Box>
             )}
             {confirmed && (
