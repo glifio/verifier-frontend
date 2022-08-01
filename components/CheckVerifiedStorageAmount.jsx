@@ -7,6 +7,9 @@ import {
   Text,
   Input,
   InputLabelBase,
+  Lines,
+  LoadingIcon,
+  StandardBox,
   ErrorBox,
   StyledATag
 } from '@glif/react-components'
@@ -162,9 +165,16 @@ export default () => {
               has {niceBytes(remainingBytes)} of DataCap left.
             </Text>
           ))}
-        {loading && !err && <Text color='core.black'>Loading...</Text>}
       </Box>
-      {err && <ErrorBox>{err}</ErrorBox>}
+      <Lines>
+        {loading && (
+          <StandardBox>
+            <LoadingIcon size='2em' />
+            <p>Loading...</p>
+          </StandardBox>
+        )}
+        {err && <ErrorBox>{err}</ErrorBox>}
+      </Lines>
     </>
   )
 }
