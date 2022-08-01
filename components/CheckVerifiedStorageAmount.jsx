@@ -11,7 +11,7 @@ import {
   LoadingIcon,
   StandardBox,
   ErrorBox,
-  StyledATag
+  SmartLink
 } from '@glif/react-components'
 import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
@@ -40,6 +40,8 @@ export default () => {
   const [remainingBytes, setRemainingBytes] = useState(null)
   // eslint-disable-next-line
   const [mostRecentAllocation, setMostRecentAllocation] = useState('')
+  const filAddressUrl = `https://filfox.info/en/address/${filAddress}`
+
   const onSubmit = async (e) => {
     e.preventDefault()
     const isValid = validateAddressString(filAddress)
@@ -74,7 +76,7 @@ export default () => {
   }
 
   return (
-    <>
+    <Lines>
       <Text color='core.darkgray'>Enter an address to check its status</Text>
       <Card
         p={0}
@@ -136,45 +138,34 @@ export default () => {
           </Form>
         </Box>
       </Card>
-      <Box pt={0} mx={3} minHeight={4} mt={3}>
-        {remainingBytes &&
-          !err &&
-          !loading &&
-          (Number(remainingBytes) === 0 ? (
-            <Text color='core.black'>
-              <StyledATag
-                display='inline-block'
-                href={`https://filfox.info/en/address/${filAddress}`}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {truncateAddr(filAddress)}
-              </StyledATag>{' '}
-              is not a verified client.
-            </Text>
-          ) : (
-            <Text color='core.black'>
-              <StyledATag
-                display='inline-block'
-                href={`https://filfox.info/en/address/${filAddress}`}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {truncateAddr(filAddress)}
-              </StyledATag>{' '}
-              has {niceBytes(remainingBytes)} of DataCap left.
-            </Text>
-          ))}
-      </Box>
-      <Lines>
-        {loading && (
+      {err ? (
+        <ErrorBox>{err}</ErrorBox>
+      ) : loading ? (
+        <StandardBox>
+          <LoadingIcon />
+          <p>Loading...</p>
+        </StandardBox>
+      ) : (
+        remainingBytes !== null && (
           <StandardBox>
-            <LoadingIcon size='2em' />
-            <p>Loading...</p>
+            {Number(remainingBytes) === 0 ? (
+              <>
+                <SmartLink href={filAddressUrl}>
+                  {truncateAddr(filAddress)}
+                </SmartLink>{' '}
+                is not a verified client.
+              </>
+            ) : (
+              <>
+                <SmartLink href={filAddressUrl}>
+                  {truncateAddr(filAddress)}
+                </SmartLink>{' '}
+                has {niceBytes(remainingBytes)} of DataCap left.
+              </>
+            )}
           </StandardBox>
-        )}
-        {err && <ErrorBox>{err}</ErrorBox>}
-      </Lines>
-    </>
+        )
+      )}
+    </Lines>
   )
 }
