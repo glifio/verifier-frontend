@@ -7,7 +7,7 @@ import {
   Text,
   Input,
   InputLabelBase,
-  Label,
+  ErrorBox,
   StyledATag
 } from '@glif/react-components'
 import styled from 'styled-components'
@@ -163,10 +163,8 @@ export default () => {
             </Text>
           ))}
         {loading && !err && <Text color='core.black'>Loading...</Text>}
-        <Label color='status.fail.background' mb={0}>
-          {err}
-        </Label>
       </Box>
+      {err && <ErrorBox>{err}</ErrorBox>}
     </>
   )
 }
