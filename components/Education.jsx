@@ -1,4 +1,4 @@
-import { Box, Title, Text, StyledATag } from '@glif/react-components'
+import { Box, Title, Text, StyledATag, SmartLink } from '@glif/react-components'
 
 const QA = ({ question, answers }) => (
   <Box m={4} maxWidth={12}>
@@ -54,9 +54,10 @@ export default function Education() {
                 address a DataCap up to that amount. This app is one example of
                 a Notary. You can find other Notaries (who will support larger
                 DataCap allocations){' '}
-                <StyledATag href='https://filecoinplus.on.fleek.co/verifiers'>
-                  here.
-                </StyledATag>
+                <SmartLink href='https://filecoinplus.on.fleek.co/verifiers'>
+                  here
+                </SmartLink>
+                .
               </Text>
             )
           ]}
@@ -69,16 +70,15 @@ export default function Education() {
                 Data stored by verified addresses makes Filecoin storage miners
                 eligible for more block rewards. This drives miners to compete
                 for verified deals by improving quality of service. You can read
-                more about this mechanism in the
-                <StyledATag href='https://filecoin.io/2020-engineering-filecoins-economy-en.pdf'>
-                  {' '}
-                  Filecoin Econ Whitepaper{' '}
-                </StyledATag>
+                more about this mechanism in the{' '}
+                <SmartLink href='https://filecoin.io/2020-engineering-filecoins-economy-en.pdf'>
+                  Filecoin Econ Whitepaper
+                </SmartLink>{' '}
                 or in the original{' '}
-                <StyledATag href='https://github.com/filecoin-project/FIPs/blob/master/FIPS/fip-0003.md'>
-                  {' '}
-                  FIP.
-                </StyledATag>
+                <SmartLink href='https://github.com/filecoin-project/FIPs/blob/master/FIPS/fip-0003.md'>
+                  FIP
+                </SmartLink>
+                .
               </Text>
             )
           ]}
@@ -127,10 +127,10 @@ export default function Education() {
               <Text {...props}>
                 There is a list of miners offering special pricing for clients
                 storing verified deals{' '}
-                <StyledATag href='https://github.com/filecoin-project/notary-governance/issues/8'>
-                  {' '}
-                  here.
-                </StyledATag>
+                <SmartLink href='https://github.com/filecoin-project/notary-governance/issues/8'>
+                  here
+                </SmartLink>
+                .
               </Text>
             )
           ]}
@@ -143,10 +143,10 @@ export default function Education() {
                 Clients with DataCap have increased power on the network. You
                 can find a list of suggestions on how to best make use of that
                 DataCap{' '}
-                <StyledATag href='https://github.com/filecoin-project/notary-governance/issues/9'>
-                  {' '}
-                  here.
-                </StyledATag>
+                <SmartLink href='https://github.com/filecoin-project/notary-governance/issues/9'>
+                  here
+                </SmartLink>
+                .
               </Text>
             )
           ]}
