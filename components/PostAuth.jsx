@@ -22,7 +22,7 @@ const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 export const PostAuth = () => {
-  const [filAddress, setFilAddress] = useState('')
+  const [address, setAddress] = useState('')
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
@@ -30,6 +30,10 @@ export const PostAuth = () => {
   const [error, setError] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
+
+  const messageUrl = `${EXPLORER}/message/?cid=${cidToConfirm}`
+  const addressUrl = `${EXPLORER}/actor/?address=${address}`
+  const truncated = truncateAddress(address)
   const allowanceGbBig = allowance / 1073741824n
   const allowanceGbNr = Number(allowanceGbBig)
 
@@ -40,7 +44,7 @@ export const PostAuth = () => {
         await confirm(cid, address)
         setConfirmed(true)
       } catch (err) {
-        setFilAddress('')
+        setAddress('')
         setError(err.message)
         logger.error('Error confirming msg from storage', err.message)
       }
@@ -52,7 +56,7 @@ export const PostAuth = () => {
         pendingVerification.cid,
         pendingVerification.address
       )
-      setFilAddress(pendingVerification.address)
+      setAddress(pendingVerification.address)
     }
   }, [confirming, confirm, setConfirming, setError, error])
 
@@ -82,7 +86,7 @@ export const PostAuth = () => {
 
   const onRequest = async (address) => {
     setError('')
-    setFilAddress(address)
+    setAddress(address)
     const isValid = validateAddressString(address)
     if (isValid) {
       setConfirming(true)
@@ -92,26 +96,26 @@ export const PostAuth = () => {
         setConfirmed(true)
       } catch (error) {
         setError(error.message)
-        setFilAddress('')
+        setAddress('')
         logger.error('Error verifying client', error.message)
       }
       setConfirming(false)
     } else {
       setError('Invalid Filecoin address.')
-      setFilAddress('')
+      setAddress('')
     }
   }
 
-  const reset = () => {
+  const onReset = () => {
     setError('')
-    setFilAddress('')
+    setAddress('')
     removeJwt()
     removeVerificationCid()
   }
 
-  const back = () => {
+  const onReturn = () => {
     setError('')
-    setFilAddress('')
+    setAddress('')
     removeVerificationCid()
     setCidToConfirm('')
     setConfirmed(false)
@@ -122,7 +126,9 @@ export const PostAuth = () => {
       <h3>Oops, something went wrong</h3>
       <ErrorBox>{error}</ErrorBox>
       <ButtonRowCenter>
-        <ButtonV2 large onClick={reset}>Retry</ButtonV2>
+        <ButtonV2 large onClick={onReset}>
+          Retry
+        </ButtonV2>
       </ButtonRowCenter>
     </>
   ) : confirming ? (
@@ -143,18 +149,16 @@ export const PostAuth = () => {
       <InfoBox>
         <p>
           Granted a {allowanceGbNr}GiB verified data allowance to:{' '}
-          <SmartLink href={`${EXPLORER}/actor/?address=${filAddress}`}>
-            {truncateAddress(filAddress)}
-          </SmartLink>
+          <SmartLink href={addressUrl}>{truncated}</SmartLink>
         </p>
         <p>
-          <SmartLink href={`${EXPLORER}/message/?cid=${cidToConfirm}`}>
-            View the confirmed message
-          </SmartLink>
+          <SmartLink href={messageUrl}>View the confirmed message</SmartLink>
         </p>
       </InfoBox>
       <ButtonRowCenter>
-        <ButtonV2 large onClick={back}>Return</ButtonV2>
+        <ButtonV2 large onClick={onReturn}>
+          Return
+        </ButtonV2>
       </ButtonRowCenter>
     </>
   ) : (
