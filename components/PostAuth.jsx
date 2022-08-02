@@ -10,7 +10,8 @@ import {
   SearchAddress,
   SmartLink,
   ButtonV2,
-  ButtonRowCenter
+  ButtonRowCenter,
+  truncateAddress
 } from '@glif/react-components'
 import { useJwt } from '../lib/JwtHandler'
 import { useMessageConfirmation } from '../lib/ConfirmMessage'
