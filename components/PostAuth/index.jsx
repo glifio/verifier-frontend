@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import styled from 'styled-components'
 import { validateAddressString } from '@glif/filecoin-address'
 
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
@@ -10,7 +9,8 @@ import {
   Button,
   LoadingIcon,
   Text,
-  Label,
+  ErrorBox,
+  Lines,
   SearchAddress
 } from '@glif/react-components'
 import { Confirming, Confirmed } from './CardStates'
@@ -123,9 +123,10 @@ export default function PostAuth() {
   return (
     <>
       <h3>Enter an address to grant a verified data allowance</h3>
-      {!confirming && !confirmed && !err && (
-        <SearchAddress large buttonText='Request' onSearch={onRequest} />
-      )}
+      <Lines>
+        {!confirming && !confirmed && !err && (
+          <SearchAddress large buttonText='Request' onSearch={onRequest} />
+        )}
         {(confirmed || err || confirming) && (
           <>
             <Text
@@ -161,7 +162,6 @@ export default function PostAuth() {
             )}
           </>
         )}
-      <Box pt={0} mx={0} textAlign='center' minHeight={6} mt={3}>
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
           <Confirmed
@@ -170,10 +170,8 @@ export default function PostAuth() {
             allowance={allowance}
           />
         )}
-        <Label color='status.fail.background' m={0}>
-          {err}
-        </Label>
-      </Box>
+        {err && <ErrorBox>{err}</ErrorBox>}
+      </Lines>
     </>
   )
 }
