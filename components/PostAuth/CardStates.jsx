@@ -1,7 +1,11 @@
 import React from 'react'
 import { string, bigint } from 'prop-types'
-import { ADDRESS_PROPTYPE, Label, StyledATag } from '@glif/react-components'
-import truncateAddress from '../../utils/truncateAddress'
+import {
+  ADDRESS_PROPTYPE,
+  Label,
+  StyledATag,
+  truncateAddress
+} from '@glif/react-components'
 
 const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
 

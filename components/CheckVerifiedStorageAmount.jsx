@@ -1,171 +1,93 @@
 import { useState } from 'react'
 import axios from 'axios'
 import {
-  Box,
-  Button,
-  Card,
-  Text,
-  Input,
-  InputLabelBase,
   Lines,
   LoadingIcon,
   StandardBox,
   ErrorBox,
-  SmartLink
+  SearchAddress,
+  SmartLink,
+  truncateAddress
 } from '@glif/react-components'
-import styled from 'styled-components'
-import { validateAddressString } from '@glif/filecoin-address'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
 import { logger } from '../logger'
-import truncateAddr from '../utils/truncateAddress'
 import niceBytes from '../utils/niceBytes'
 
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 dayjs.extend(relativeTime)
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-grow: 1;
-`
-
 export default () => {
-  const [filAddress, setFilAddress] = useState('')
-  const [err, setErr] = useState('')
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [address, setAddress] = useState('')
   const [remainingBytes, setRemainingBytes] = useState(null)
-  // eslint-disable-next-line
-  const [mostRecentAllocation, setMostRecentAllocation] = useState('')
-  const filAddressUrl = `https://filfox.info/en/address/${filAddress}`
 
-  const onSubmit = async (e) => {
-    e.preventDefault()
-    const isValid = validateAddressString(filAddress)
-    if (isValid) {
-      setLoading(true)
-      try {
-        const res = await axios.get(
-          `${VERIFIER_URL}/account-remaining-bytes/${filAddress}`
-        )
-        if (res.status !== 200) {
-          setErr(res.statusText)
-          logger.error(
-            'Non 200 response when getting account-remaining-bytes',
-            res.statusText
-          )
-        } else {
-          setRemainingBytes(res.data.remainingBytes)
-          setMostRecentAllocation(res.data.mostRecentAllocation)
-        }
-      } catch (err) {
-        setErr(err.response.data.error)
+  const addressUrl = `https://filfox.info/en/address/${address}`
+  const truncated = truncateAddress(address)
+
+  const onSearch = async (address) => {
+    setError('')
+    setLoading(true)
+    setAddress(address)
+    setRemainingBytes(null)
+
+    try {
+      const url = `${VERIFIER_URL}/account-remaining-bytes/${address}`
+      const res = await axios.get(url)
+      if (res.status === 200) {
+        setRemainingBytes(res.data.remainingBytes)
+      } else {
+        setError(res.statusText)
         logger.error(
-          'Error getting account-remaining-bytes',
-          err.response.data.error,
-          err.message
+          'Non 200 response when getting account-remaining-bytes',
+          res.statusText
         )
       }
-    } else {
-      setErr('Invalid Filecoin address.')
+    } catch (err) {
+      setError(err.response.data.error)
+      logger.error(
+        'Error getting account-remaining-bytes',
+        err.response.data.error,
+        err.message
+      )
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   return (
-    <Lines>
-      <Text color='core.darkgray'>Enter an address to check its status</Text>
-      <Card
-        p={0}
-        border={0}
-        width='100%'
-        maxWidth={13}
-        height={7}
-        display='flex'
-        flexDirection='column'
-        justifyContent='space-between'
-        boxShadow={2}
-      >
-        <Box
-          display='flex'
-          flexDirection='row'
-          justifyContent='space-between'
-          flexWrap='wrap'
-          height='100%'
-        >
-          <Form onSubmit={onSubmit}>
-            <Box
-              position='relative'
-              display='flex'
-              flexGrow='1'
-              flexWrap='wrap'
-              alignItems='center'
-              height='100%'
-            >
-              <InputLabelBase display='none' htmlFor='check-fil-address' />
-              <Input.Base
-                id='check-fil-address'
-                width='100%'
-                flexShrink='1'
-                pr={8}
-                pl={3}
-                height='100%'
-                overflow='scroll'
-                placeholder='f1OwL...'
-                value={filAddress}
-                onChange={(e) => {
-                  setMostRecentAllocation('')
-                  setRemainingBytes(null)
-                  setErr('')
-                  setFilAddress(e.target.value)
-                }}
-              />
-              <Button
-                position='absolute'
-                right='0'
-                type='submit'
-                title='Check'
-                variant='secondary'
-                mx={2}
-                px={4}
-                disabled={!filAddress}
-                bg='transparent'
-              />
-            </Box>
-          </Form>
-        </Box>
-      </Card>
-      {err ? (
-        <ErrorBox>{err}</ErrorBox>
-      ) : loading ? (
-        <StandardBox>
-          <LoadingIcon />
-          <p>Loading...</p>
-        </StandardBox>
-      ) : (
-        remainingBytes !== null && (
+    <>
+      <h2>Enter an address to check its status</h2>
+      <Lines>
+        <SearchAddress large buttonText='Check' onSearch={onSearch} />
+        {error ? (
+          <ErrorBox>{error}</ErrorBox>
+        ) : loading ? (
           <StandardBox>
-            {Number(remainingBytes) === 0 ? (
-              <>
-                <SmartLink href={filAddressUrl}>
-                  {truncateAddr(filAddress)}
-                </SmartLink>{' '}
-                is not a verified client.
-              </>
-            ) : (
-              <>
-                <SmartLink href={filAddressUrl}>
-                  {truncateAddr(filAddress)}
-                </SmartLink>{' '}
-                has {niceBytes(remainingBytes)} of DataCap left.
-              </>
-            )}
+            <LoadingIcon />
+            <p>Loading...</p>
           </StandardBox>
-        )
-      )}
-    </Lines>
+        ) : (
+          remainingBytes !== null && (
+            <StandardBox>
+              {Number(remainingBytes) === 0 ? (
+                <>
+                  <SmartLink href={addressUrl}>{truncated}</SmartLink> is not a
+                  verified client.
+                </>
+              ) : (
+                <>
+                  <SmartLink href={addressUrl}>{truncated}</SmartLink> has{' '}
+                  {niceBytes(remainingBytes)} of DataCap left.
+                </>
+              )}
+            </StandardBox>
+          )
+        )}
+      </Lines>
+    </>
   )
 }
