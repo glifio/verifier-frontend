@@ -30,6 +30,8 @@ export const PostAuth = () => {
   const [error, setError] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
+  const allowanceGbBig = allowance / 1073741824n
+  const allowanceGbNr = Number(allowanceGbBig)
 
   useEffect(() => {
     const confirmMsgFromStorage = async (cid, address) => {
@@ -103,7 +105,7 @@ export const PostAuth = () => {
   const reset = () => {
     setError('')
     setFilAddress('')
-    removeJwt('')
+    removeJwt()
     removeVerificationCid()
   }
 
@@ -114,9 +116,6 @@ export const PostAuth = () => {
     setCidToConfirm('')
     setConfirmed(false)
   }
-
-  const allowanceGbBig = allowance / 1073741824n
-  const allowanceGbNr = Number(allowanceGbBig)
 
   return error ? (
     <>
