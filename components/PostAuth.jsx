@@ -122,7 +122,7 @@ export const PostAuth = () => {
       <h3>Oops, something went wrong</h3>
       <ErrorBox>{error}</ErrorBox>
       <ButtonRowCenter>
-        <ButtonV2 onClick={reset}>Retry</ButtonV2>
+        <ButtonV2 large onClick={reset}>Retry</ButtonV2>
       </ButtonRowCenter>
     </>
   ) : confirming ? (
@@ -154,7 +154,7 @@ export const PostAuth = () => {
         </p>
       </InfoBox>
       <ButtonRowCenter>
-        <ButtonV2 onClick={back}>Return</ButtonV2>
+        <ButtonV2 large onClick={back}>Return</ButtonV2>
       </ButtonRowCenter>
     </>
   ) : (
