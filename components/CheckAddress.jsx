@@ -15,6 +15,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { logger } from '../logger'
 import niceBytes from '../utils/niceBytes'
 
+const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 dayjs.extend(relativeTime)
@@ -25,7 +26,7 @@ export const CheckAddress = () => {
   const [address, setAddress] = useState('')
   const [remainingBytes, setRemainingBytes] = useState(null)
 
-  const addressUrl = `https://filfox.info/en/address/${address}`
+  const addressUrl = `${EXPLORER}/actor/?address=${address}`
   const truncated = truncateAddress(address)
 
   const onCheck = async (address) => {
