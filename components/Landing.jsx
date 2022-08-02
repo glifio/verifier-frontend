@@ -6,8 +6,8 @@ import {
   OneColumnLargeText,
   useNetworkName
 } from '@glif/react-components'
-import PostAuth from './PostAuth'
 import { PreAuth } from './PreAuth'
+import { PostAuth } from './PostAuth'
 import { CheckAddress } from './CheckAddress'
 import { useJwt } from '../lib/JwtHandler'
 import Education from './Education'

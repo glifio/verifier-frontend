@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { validateAddressString } from '@glif/filecoin-address'
 
+const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 import {
@@ -9,15 +10,17 @@ import {
   Button,
   LoadingIcon,
   Text,
+  InfoBox,
   ErrorBox,
   Lines,
-  SearchAddress
+  SearchAddress,
+  SmartLink,
+  StandardBox
 } from '@glif/react-components'
-import { Confirming, Confirmed } from './CardStates'
-import { useJwt } from '../../lib/JwtHandler'
-import { useMessageConfirmation } from '../../lib/ConfirmMessage'
-import { getVerification, removeVerificationCid } from '../../utils/storage'
-import { logger } from '../../logger'
+import { useJwt } from '../lib/JwtHandler'
+import { useMessageConfirmation } from '../lib/ConfirmMessage'
+import { getVerification, removeVerificationCid } from '../utils/storage'
+import { logger } from '../logger'
 
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (error) return 'Oops. Please try again.'
@@ -26,7 +29,7 @@ const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (!confirming && !confirmed) return ''
 }
 
-export default function PostAuth() {
+export const PostAuth = () => {
   const [filAddress, setFilAddress] = useState('')
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
@@ -120,6 +123,9 @@ export default function PostAuth() {
     setConfirmed(false)
   }
 
+  const allowanceGbBig = allowance / 1073741824n
+  const allowanceGbNr = Number(allowanceGbBig)
+
   return (
     <>
       <h3>Enter an address to grant a verified data allowance</h3>
@@ -162,13 +168,31 @@ export default function PostAuth() {
             )}
           </>
         )}
-        {confirming && <Confirming cid={cidToConfirm} err={err} />}
+        {confirming && (
+          <StandardBox>
+            <LoadingIcon />
+            <p>Confirming...</p>
+            <p>
+              <SmartLink href={`${EXPLORER}/message/?cid=${cidToConfirm}`}>
+                View the pending message
+              </SmartLink>
+            </p>
+          </StandardBox>
+        )}
         {!confirming && confirmed && (
-          <Confirmed
-            address={filAddress}
-            cid={cidToConfirm}
-            allowance={allowance}
-          />
+          <InfoBox>
+            <p>
+              Granted a {allowanceGbNr}GiB verified data allowance to:{' '}
+              <SmartLink href={`${EXPLORER}/actor/?address=${filAddress}`}>
+                {truncateAddress(filAddress)}
+              </SmartLink>
+            </p>
+            <p>
+              <SmartLink href={`${EXPLORER}/message/?cid=${cidToConfirm}`}>
+                View the confirmed message
+              </SmartLink>
+            </p>
+          </InfoBox>
         )}
         {err && <ErrorBox>{err}</ErrorBox>}
       </Lines>
