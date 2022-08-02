@@ -22,16 +22,16 @@ const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
 const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 export const PostAuth = () => {
+  const [error, setError] = useState('')
   const [address, setAddress] = useState('')
+  const [messageCid, setMessageCid] = useState('')
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
-  const [cidToConfirm, setCidToConfirm] = useState('')
   const [allowance, setAllowance] = useState(BigInt(0))
-  const [error, setError] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
-  const messageUrl = `${EXPLORER}/message/?cid=${cidToConfirm}`
+  const messageUrl = `${EXPLORER}/message/?cid=${messageCid}`
   const addressUrl = `${EXPLORER}/actor/?address=${address}`
   const truncated = truncateAddress(address)
   const allowanceGbBig = allowance / 1073741824n
@@ -70,7 +70,7 @@ export const PostAuth = () => {
         }
       )
       if (res.status !== 200) throw new Error(res.data.error)
-      setCidToConfirm(res.data.cid)
+      setMessageCid(res.data.cid)
       setAllowance(BigInt(res.data.allowance))
       return res.data.cid
     } catch (err) {
@@ -106,19 +106,24 @@ export const PostAuth = () => {
     }
   }
 
-  const onReset = () => {
+  const resetState = () => {
     setError('')
     setAddress('')
+    setMessageCid('')
+    setConfirming(false)
+    setConfirmed(false)
+    setAllowance(BigInt(0))
+  }
+
+  const onReset = () => {
+    resetState()
     removeJwt()
     removeVerificationCid()
   }
 
   const onReturn = () => {
-    setError('')
-    setAddress('')
+    resetState()
     removeVerificationCid()
-    setCidToConfirm('')
-    setConfirmed(false)
   }
 
   return error ? (
@@ -137,9 +142,7 @@ export const PostAuth = () => {
       <StandardBox>
         <LoadingIcon />
         <p>
-          <SmartLink href={`${EXPLORER}/message/?cid=${cidToConfirm}`}>
-            View the pending message
-          </SmartLink>
+          <SmartLink href={messageUrl}>View the pending message</SmartLink>
         </p>
       </StandardBox>
     </>
