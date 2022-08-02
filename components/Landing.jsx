@@ -2,7 +2,7 @@ import React from 'react'
 import {
   AppTile,
   LandingPageColumns,
-  LandingPageContent,
+  OneColumn,
   OneColumnLargeText,
   useNetworkName
 } from '@glif/react-components'
@@ -38,10 +38,14 @@ export default function Landing() {
             </p>
           </OneColumnLargeText>
         ) : (
-          <LandingPageContent>
-            {jwt ? <PostAuth /> : <PreAuth />}
-            <CheckVerifiedStorageAmount />
-          </LandingPageContent>
+          <div>
+            <OneColumn>
+              {jwt ? <PostAuth /> : <PreAuth />}
+            </OneColumn>
+            <OneColumn>
+              <CheckVerifiedStorageAmount />
+            </OneColumn>
+          </div>
         )}
       </LandingPageColumns>
     </VerifierPage>
