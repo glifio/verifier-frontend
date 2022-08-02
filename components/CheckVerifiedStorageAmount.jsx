@@ -60,7 +60,7 @@ export default () => {
 
   return (
     <>
-      <h2>Enter an address to check its status</h2>
+      <h3>Enter an address to check its status</h3>
       <Lines>
         <SearchAddress large buttonText='Check' onSearch={onSearch} />
         {error ? (
