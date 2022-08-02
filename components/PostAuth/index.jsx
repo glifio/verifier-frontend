@@ -10,11 +10,8 @@ import {
   Button,
   LoadingIcon,
   Text,
-  Input,
-  InputLabelBase,
   Label,
-  Card,
-  devices
+  SearchAddress
 } from '@glif/react-components'
 import { Confirming, Confirmed } from './CardStates'
 import { useJwt } from '../../lib/JwtHandler'
@@ -93,14 +90,14 @@ export default function PostAuth() {
     }
   }
 
-  const onSubmit = async (e) => {
-    e.preventDefault()
+  const onRequest = async (address) => {
     setErr('')
-    const isValid = validateAddressString(filAddress)
+    setFilAddress(address)
+    const isValid = validateAddressString(address)
     if (isValid) {
       setConfirming(true)
       try {
-        const verificationCid = await verify(jwt, filAddress)
+        const verificationCid = await verify(jwt, address)
         await confirm(verificationCid)
         setConfirmed(true)
       } catch (error) {
@@ -132,95 +129,12 @@ export default function PostAuth() {
 
   return (
     <>
-      <Box
-        display='flex'
-        width='100%'
-        justifyContent='space-between'
-        flexWrap='wrap'
-        mb={3}
-        css={`
-          @media (min-width: ${devices.tablet}) {
-            margin-top: 48px;
-          }
-        `}
-      >
-        <Text color='core.darkgray' textAlign='left' p='0' m={0}>
-          Enter an address to grant a verified data allowance
-        </Text>
-      </Box>
-      <Card
-        p={0}
-        border={0}
-        width='100%'
-        maxWidth={13}
-        height={7}
-        display='flex'
-        flexDirection='column'
-        justifyContent='space-between'
-        boxShadow={2}
-        bg={
-          err
-            ? 'status.fail.background'
-            : confirmed
-            ? 'status.success.background'
-            : 'input.background.base'
-        }
-      >
-        {!confirming && !confirmed && !err && (
-          <Box
-            display='flex'
-            flexDirection='row'
-            justifyContent='space-between'
-            flexWrap='wrap'
-            height='100%'
-          >
-            <Form onSubmit={onSubmit}>
-              <Box
-                position='relative'
-                display='flex'
-                flexGrow='1'
-                flexWrap='wrap'
-                alignItems='center'
-                height='100%'
-              >
-                <InputLabelBase display='none' htmlFor='fil-address' />
-                <Input.Base
-                  id='fil-address'
-                  width='100%'
-                  pr={8}
-                  overflow='scroll'
-                  placeholder='f1OwL...'
-                  value={filAddress}
-                  pl={3}
-                  height='100%'
-                  flexShrink='1'
-                  onChange={(e) => {
-                    setErr('')
-                    setFilAddress(e.target.value)
-                  }}
-                />
-                <Button
-                  position='absolute'
-                  right='0'
-                  mx={2}
-                  px={4}
-                  type='submit'
-                  title='Request'
-                  disabled={!filAddress}
-                />
-              </Box>
-            </Form>
-          </Box>
-        )}
+      <h3>Enter an address to grant a verified data allowance</h3>
+      {!confirming && !confirmed && !err && (
+        <SearchAddress large buttonText='Request' onSearch={onRequest} />
+      )}
         {(confirmed || err || confirming) && (
-          <Box
-            display='flex'
-            flexDirection='row'
-            justifyContent='space-between'
-            alignItems='center'
-            flexWrap='wrap'
-            height='100%'
-          >
+          <>
             <Text
               m={0}
               px={3}
@@ -252,9 +166,8 @@ export default function PostAuth() {
                 onClick={reset}
               />
             )}
-          </Box>
+          </>
         )}
-      </Card>
       <Box pt={0} mx={0} textAlign='center' minHeight={6} mt={3}>
         {confirming && <Confirming cid={cidToConfirm} err={err} />}
         {!confirming && confirmed && (
