@@ -2,32 +2,23 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { validateAddressString } from '@glif/filecoin-address'
 
-const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
-const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
-
 import {
-  Box,
-  Button,
   LoadingIcon,
-  Text,
+  StandardBox,
   InfoBox,
   ErrorBox,
-  Lines,
   SearchAddress,
   SmartLink,
-  StandardBox
+  ButtonV2,
+  ButtonRowCenter
 } from '@glif/react-components'
 import { useJwt } from '../lib/JwtHandler'
 import { useMessageConfirmation } from '../lib/ConfirmMessage'
 import { getVerification, removeVerificationCid } from '../utils/storage'
 import { logger } from '../logger'
 
-const StepHeaderTitle = ({ confirming, confirmed, error }) => {
-  if (error) return 'Oops. Please try again.'
-  if (confirming) return 'Confirming...'
-  if (confirmed) return 'Success'
-  if (!confirming && !confirmed) return ''
-}
+const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
+const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 export const PostAuth = () => {
   const [filAddress, setFilAddress] = useState('')
@@ -126,76 +117,50 @@ export const PostAuth = () => {
   const allowanceGbBig = allowance / 1073741824n
   const allowanceGbNr = Number(allowanceGbBig)
 
-  return (
+  return error ? (
+    <>
+      <h3>Oops, something went wrong</h3>
+      <ErrorBox>{error}</ErrorBox>
+      <ButtonRowCenter>
+        <ButtonV2 onClick={reset}>Retry</ButtonV2>
+      </ButtonRowCenter>
+    </>
+  ) : confirming ? (
+    <>
+      <h3>Confirming...</h3>
+      <StandardBox>
+        <LoadingIcon />
+        <p>
+          <SmartLink href={`${EXPLORER}/message/?cid=${cidToConfirm}`}>
+            View the pending message
+          </SmartLink>
+        </p>
+      </StandardBox>
+    </>
+  ) : confirmed ? (
+    <>
+      <h3>Success</h3>
+      <InfoBox>
+        <p>
+          Granted a {allowanceGbNr}GiB verified data allowance to:{' '}
+          <SmartLink href={`${EXPLORER}/actor/?address=${filAddress}`}>
+            {truncateAddress(filAddress)}
+          </SmartLink>
+        </p>
+        <p>
+          <SmartLink href={`${EXPLORER}/message/?cid=${cidToConfirm}`}>
+            View the confirmed message
+          </SmartLink>
+        </p>
+      </InfoBox>
+      <ButtonRowCenter>
+        <ButtonV2 onClick={back}>Return</ButtonV2>
+      </ButtonRowCenter>
+    </>
+  ) : (
     <>
       <h3>Enter an address to grant a verified data allowance</h3>
-      <Lines>
-        {!confirming && !confirmed && !error && (
-          <SearchAddress large buttonText='Request' onSearch={onRequest} />
-        )}
-        {(confirmed || error || confirming) && (
-          <>
-            <Text
-              m={0}
-              px={3}
-              maxWidth={11}
-              whiteSpace='nowrap'
-              textOverflow='ellipsis'
-              overflow='hidden'
-            >
-              {StepHeaderTitle({ confirmed, confirming, error: error })}
-            </Text>
-            {confirming && (
-              <Box mr={2}>
-                <LoadingIcon />
-              </Box>
-            )}
-            {confirmed && (
-              <Button
-                mx={2}
-                variant='secondary'
-                title='Return'
-                onClick={back}
-              />
-            )}
-            {error && (
-              <Button
-                mx={2}
-                variant='secondary'
-                title='Retry'
-                onClick={reset}
-              />
-            )}
-          </>
-        )}
-        {error ? (
-          <ErrorBox>{error}</ErrorBox>
-        ) : confirming ? (
-          <StandardBox>
-            <LoadingIcon />
-            <p>Confirming...</p>
-            <p>
-              <SmartLink href={`${EXPLORER}/message/?cid=${cidToConfirm}`}>
-                View the pending message
-              </SmartLink>
-            </p>
-          </StandardBox>
-        ) : confirmed && (
-          <InfoBox>
-            <p>
-              Granted a {allowanceGbNr}GiB verified data allowance to:{' '}
-              <SmartLink href={`${EXPLORER}/actor/?address=${filAddress}`}>
-                {truncateAddress(filAddress)}
-              </SmartLink>
-            </p>
-            <p>
-              <SmartLink href={`${EXPLORER}/message/?cid=${cidToConfirm}`}>
-                View the confirmed message
-              </SmartLink>
-            </p>
-          </InfoBox>
-        )}
-      </Lines>
+      <SearchAddress large buttonText='Request' onSearch={onRequest} />
     </>
   )
 }
