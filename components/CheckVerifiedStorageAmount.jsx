@@ -28,7 +28,7 @@ export default () => {
   const addressUrl = `https://filfox.info/en/address/${address}`
   const truncated = truncateAddress(address)
 
-  const onSearch = async (address) => {
+  const onCheck = async (address) => {
     setError('')
     setLoading(true)
     setAddress(address)
@@ -62,7 +62,7 @@ export default () => {
     <>
       <h3>Enter an address to check its status</h3>
       <Lines>
-        <SearchAddress large buttonText='Check' onSearch={onSearch} />
+        <SearchAddress large buttonText='Check' onSearch={onCheck} />
         {error ? (
           <ErrorBox>{error}</ErrorBox>
         ) : loading ? (
