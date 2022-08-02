@@ -8,7 +8,7 @@ import {
 } from '@glif/react-components'
 import PostAuth from './PostAuth'
 import { PreAuth } from './PreAuth'
-import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
+import { CheckAddress } from './CheckAddress'
 import { useJwt } from '../lib/JwtHandler'
 import Education from './Education'
 import VerifierPage from './VerifierPage'
@@ -43,7 +43,7 @@ export default function Landing() {
               {jwt ? <PostAuth /> : <PreAuth />}
             </OneColumn>
             <OneColumn>
-              <CheckVerifiedStorageAmount />
+              <CheckAddress />
             </OneColumn>
           </div>
         )}

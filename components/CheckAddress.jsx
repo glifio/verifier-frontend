@@ -19,7 +19,7 @@ const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
 
 dayjs.extend(relativeTime)
 
-export default () => {
+export const CheckAddress = () => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [address, setAddress] = useState('')
