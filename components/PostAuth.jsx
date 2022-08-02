@@ -168,7 +168,9 @@ export const PostAuth = () => {
             )}
           </>
         )}
-        {confirming && (
+        {error ? (
+          <ErrorBox>{error}</ErrorBox>
+        ) : confirming ? (
           <StandardBox>
             <LoadingIcon />
             <p>Confirming...</p>
@@ -178,8 +180,7 @@ export const PostAuth = () => {
               </SmartLink>
             </p>
           </StandardBox>
-        )}
-        {!confirming && confirmed && (
+        ) : confirmed && (
           <InfoBox>
             <p>
               Granted a {allowanceGbNr}GiB verified data allowance to:{' '}
@@ -194,7 +195,6 @@ export const PostAuth = () => {
             </p>
           </InfoBox>
         )}
-        {error && <ErrorBox>{error}</ErrorBox>}
       </Lines>
     </>
   )
