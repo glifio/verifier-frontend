@@ -35,7 +35,7 @@ export const PostAuth = () => {
   const [confirmed, setConfirmed] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [allowance, setAllowance] = useState(BigInt(0))
-  const [err, setErr] = useState('')
+  const [error, setError] = useState('')
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
@@ -47,20 +47,20 @@ export const PostAuth = () => {
         setConfirmed(true)
       } catch (err) {
         setFilAddress('')
-        setErr(err.message)
+        setError(err.message)
         logger.error('Error confirming msg from storage', err.message)
       }
       setConfirming(false)
     }
     const pendingVerification = getVerification()
-    if (pendingVerification.cid && !confirming && !err) {
+    if (pendingVerification.cid && !confirming && !error) {
       confirmMsgFromStorage(
         pendingVerification.cid,
         pendingVerification.address
       )
       setFilAddress(pendingVerification.address)
     }
-  }, [confirming, confirm, setConfirming, setErr, err])
+  }, [confirming, confirm, setConfirming, setError, error])
 
   const verify = async (jwt, filAddress) => {
     try {
@@ -87,7 +87,7 @@ export const PostAuth = () => {
   }
 
   const onRequest = async (address) => {
-    setErr('')
+    setError('')
     setFilAddress(address)
     const isValid = validateAddressString(address)
     if (isValid) {
@@ -97,26 +97,26 @@ export const PostAuth = () => {
         await confirm(verificationCid)
         setConfirmed(true)
       } catch (error) {
-        setErr(error.message)
+        setError(error.message)
         setFilAddress('')
-        logger.error('Error verifying client', err.message)
+        logger.error('Error verifying client', error.message)
       }
       setConfirming(false)
     } else {
-      setErr('Invalid Filecoin address.')
+      setError('Invalid Filecoin address.')
       setFilAddress('')
     }
   }
 
   const reset = () => {
-    setErr('')
+    setError('')
     setFilAddress('')
     removeJwt('')
     removeVerificationCid()
   }
 
   const back = () => {
-    setErr('')
+    setError('')
     setFilAddress('')
     removeVerificationCid()
     setCidToConfirm('')
@@ -130,10 +130,10 @@ export const PostAuth = () => {
     <>
       <h3>Enter an address to grant a verified data allowance</h3>
       <Lines>
-        {!confirming && !confirmed && !err && (
+        {!confirming && !confirmed && !error && (
           <SearchAddress large buttonText='Request' onSearch={onRequest} />
         )}
-        {(confirmed || err || confirming) && (
+        {(confirmed || error || confirming) && (
           <>
             <Text
               m={0}
@@ -143,7 +143,7 @@ export const PostAuth = () => {
               textOverflow='ellipsis'
               overflow='hidden'
             >
-              {StepHeaderTitle({ confirmed, confirming, error: err })}
+              {StepHeaderTitle({ confirmed, confirming, error: error })}
             </Text>
             {confirming && (
               <Box mr={2}>
@@ -158,7 +158,7 @@ export const PostAuth = () => {
                 onClick={back}
               />
             )}
-            {err && (
+            {error && (
               <Button
                 mx={2}
                 variant='secondary'
@@ -194,7 +194,7 @@ export const PostAuth = () => {
             </p>
           </InfoBox>
         )}
-        {err && <ErrorBox>{err}</ErrorBox>}
+        {error && <ErrorBox>{error}</ErrorBox>}
       </Lines>
     </>
   )
