@@ -39,9 +39,7 @@ export default function Landing() {
           </OneColumnLargeText>
         ) : (
           <div>
-            <OneColumn>
-              {jwt ? <PostAuth /> : <PreAuth />}
-            </OneColumn>
+            <OneColumn>{jwt ? <PostAuth /> : <PreAuth />}</OneColumn>
             <OneColumn>
               <CheckAddress />
             </OneColumn>
