@@ -19,13 +19,6 @@ import { useMessageConfirmation } from '../../lib/ConfirmMessage'
 import { getVerification, removeVerificationCid } from '../../utils/storage'
 import { logger } from '../../logger'
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-grow: 1;
-`
-
 const StepHeaderTitle = ({ confirming, confirmed, error }) => {
   if (error) return 'Oops. Please try again.'
   if (confirming) return 'Confirming...'
