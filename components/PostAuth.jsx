@@ -25,6 +25,7 @@ export const PostAuth = () => {
   const [error, setError] = useState('')
   const [address, setAddress] = useState('')
   const [messageCid, setMessageCid] = useState('')
+  const [makingRequest, setMakingRequest] = useState(false)
   const [confirming, setConfirming] = useState(false)
   const [confirmed, setConfirmed] = useState(false)
   const [allowance, setAllowance] = useState(BigInt(0))
@@ -89,9 +90,11 @@ export const PostAuth = () => {
     setAddress(address)
     const isValid = validateAddressString(address)
     if (isValid) {
-      setConfirming(true)
+      setMakingRequest(true)
       try {
         const verificationCid = await verify(jwt, address)
+        setMakingRequest(false)
+        setConfirming(true)
         await confirm(verificationCid)
         setConfirmed(true)
       } catch (error) {
@@ -99,7 +102,7 @@ export const PostAuth = () => {
         setAddress('')
         logger.error('Error verifying client', error.message)
       }
-      setConfirming(false)
+      // setConfirming(false)
     } else {
       setError('Invalid Filecoin address.')
       setAddress('')
@@ -135,6 +138,13 @@ export const PostAuth = () => {
           Retry
         </ButtonV2>
       </ButtonRowCenter>
+    </>
+  ) : makingRequest ? (
+    <>
+      <h3>Sending request...</h3>
+      <StandardBox>
+        <LoadingIcon />
+      </StandardBox>
     </>
   ) : confirming ? (
     <>
