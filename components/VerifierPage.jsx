@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 import {
   Page,
   NetworkConnection,
-  VerifierIconHeaderFooter
+  VerifierIconHeaderFooter,
+  navigate
 } from '@glif/react-components'
 import { GLIF_DISCORD } from '../constants'
 
