@@ -2,13 +2,13 @@ import React from 'react'
 import {
   AppTile,
   LandingPageColumns,
-  LandingPageContent,
+  OneColumn,
   OneColumnLargeText,
   useNetworkName
 } from '@glif/react-components'
-import PreAuth from './PreAuth'
-import PostAuth from './PostAuth'
-import CheckVerifiedStorageAmount from './CheckVerifiedStorageAmount'
+import { PreAuth } from './PreAuth'
+import { PostAuth } from './PostAuth'
+import { CheckAddress } from './CheckAddress'
 import { useJwt } from '../lib/JwtHandler'
 import Education from './Education'
 import VerifierPage from './VerifierPage'
@@ -38,10 +38,12 @@ export default function Landing() {
             </p>
           </OneColumnLargeText>
         ) : (
-          <LandingPageContent>
-            {jwt ? <PostAuth /> : <PreAuth />}
-            <CheckVerifiedStorageAmount />
-          </LandingPageContent>
+          <div>
+            <OneColumn>{jwt ? <PostAuth /> : <PreAuth />}</OneColumn>
+            <OneColumn>
+              <CheckAddress />
+            </OneColumn>
+          </div>
         )}
       </LandingPageColumns>
     </VerifierPage>

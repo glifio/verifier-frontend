@@ -6,7 +6,7 @@ const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 const OAUTH_STATE_STRING = process.env.NEXT_PUBLIC_OAUTH_STATE_STRING
 const GITHUB_REDIRECT_URL = process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URL
 
-export default function PreAuthenticated() {
+export const PreAuth = () => {
   const url = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URL}&state=${OAUTH_STATE_STRING}-${uuidv4()}`
   return (
     <>

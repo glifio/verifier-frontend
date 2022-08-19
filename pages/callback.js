@@ -48,7 +48,7 @@ export default function Callback() {
           <ErrorBox>There was an error authenticating with GitHub.</ErrorBox>
         </OneColumn>
       )}
-      {gettingJwt && !jwt && !jwtErr && <LoadingScreen height='100vh' />}
+      {gettingJwt && !jwt && !jwtErr && <LoadingScreen />}
       {jwt && !jwtErr && <CallbackRedirect jwt={jwt} />}
     </>
   )
