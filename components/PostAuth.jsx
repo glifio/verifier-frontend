@@ -47,10 +47,8 @@ const RequestState = {
 }
 
 export default function PostAuth() {
-  const [filAddress, setFilAddress] = useState('t080')
-  const [requestState, setRequestState] = useState(
-    RequestState.CONFIRMED_REQUEST
-  )
+  const [filAddress, setFilAddress] = useState('')
+  const [requestState, setRequestState] = useState(RequestState.FILLING_FORM)
   const [isValid, setIsValid] = useState(false)
   const [cidToConfirm, setCidToConfirm] = useState('')
   const [allowance, setAllowance] = useState(BigInt(0))
