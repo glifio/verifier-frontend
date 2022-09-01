@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { ErrorBox, LoadingScreen, OneColumn } from '@glif/react-components'
+import {
+  ErrorBox,
+  LoadingScreen,
+  OneColumn,
+  useLogger
+} from '@glif/react-components'
 import { useRouter } from 'next/router'
 import CallbackRedirect from '../components/CallbackRedirect'
-import { logger } from '../logger'
 
-const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export default function Callback() {
+  const logger = useLogger()
   const router = useRouter()
   const [gettingJwt, setGettingJwt] = useState(false)
   const [jwt, setJwt] = useState('')
@@ -15,7 +20,7 @@ export default function Callback() {
 
   useEffect(() => {
     const getJWT = async () => {
-      const res = await axios.post(`${VERIFIER_URL}/oauth/github`, {
+      const res = await axios.post(`${BACKEND_URL}/oauth/github`, {
         code: router.query.code,
         state: router.query.state
       })
@@ -38,7 +43,8 @@ export default function Callback() {
     setJwt,
     jwt,
     router.query.code,
-    router.query.state
+    router.query.state,
+    logger
   ])
 
   return (

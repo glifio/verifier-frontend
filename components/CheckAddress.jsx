@@ -7,26 +7,28 @@ import {
   ErrorBox,
   SearchAddress,
   SmartLink,
-  truncateAddress
+  truncateAddress,
+  useLogger,
+  useEnvironment
 } from '@glif/react-components'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-import { logger } from '../logger'
 import niceBytes from '../utils/niceBytes'
 
-const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
-const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 dayjs.extend(relativeTime)
 
 export const CheckAddress = () => {
+  const logger = useLogger()
+  const { explorerUrl } = useEnvironment()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [address, setAddress] = useState('')
   const [remainingBytes, setRemainingBytes] = useState(null)
 
-  const addressUrl = `${EXPLORER}/actor/?address=${address}`
+  const addressUrl = `${explorerUrl}/actor/?address=${address}`
   const truncated = truncateAddress(address)
 
   const onCheck = async (address) => {
@@ -36,7 +38,7 @@ export const CheckAddress = () => {
     setRemainingBytes(null)
 
     try {
-      const url = `${VERIFIER_URL}/account-remaining-bytes/${address}`
+      const url = `${BACKEND_URL}/account-remaining-bytes/${address}`
       const res = await axios.get(url)
       if (res.status === 200) {
         setRemainingBytes(res.data.remainingBytes)

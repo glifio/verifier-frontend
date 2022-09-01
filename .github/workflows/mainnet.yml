@@ -67,7 +67,7 @@ jobs:
           WALLET_URL: 'https://wallet.glif.io'
           SAFE_URL: 'https://safe.glif.io'
           EXPLORER_URL: 'https://explorer.glif.io'
-          VERIFIER_URL: 'https://mainnet.verify.backend.glif.io'
+          VERIFIER_URL: 'https://verify.glif.io'
           SENTRY_DSN: 'https://deb0795eeb874099961015e42a881020@o1126745.ingest.sentry.io/6229153'
           SENTRY_ENV: 'mainnet'
           NODE_STATUS_API_KEY: 'm787669344-2a9b90eb03dbff3e503c93c7'

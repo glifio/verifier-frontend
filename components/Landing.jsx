@@ -2,9 +2,10 @@ import React from 'react'
 import {
   AppTile,
   LandingPageColumns,
+  Network,
   OneColumn,
   OneColumnLargeText,
-  useNetworkName
+  useEnvironment
 } from '@glif/react-components'
 import { PreAuth } from './PreAuth'
 import { PostAuth } from './PostAuth'
@@ -15,9 +16,7 @@ import VerifierPage from './VerifierPage'
 
 export default function Landing() {
   const { jwt } = useJwt()
-  const { networkName } = useNetworkName(
-    process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC
-  )
+  const { networkName } = useEnvironment()
 
   return (
     <VerifierPage preFooter={<Education />}>
@@ -30,7 +29,7 @@ export default function Landing() {
           small={false}
           large
         />
-        {networkName && networkName !== 'Mainnet' ? (
+        {networkName && networkName !== Network.MAINNET ? (
           <OneColumnLargeText className='primary'>
             <p>
               We&apos;re sorry, the Glif Verifier only supports Mainnet right

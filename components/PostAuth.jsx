@@ -11,17 +11,19 @@ import {
   SmartLink,
   ButtonV2,
   ButtonRowCenter,
-  truncateAddress
+  truncateAddress,
+  useLogger,
+  useEnvironment
 } from '@glif/react-components'
 import { useJwt } from '../lib/JwtHandler'
 import { useMessageConfirmation } from '../lib/ConfirmMessage'
 import { getVerification, removeVerificationCid } from '../utils/storage'
-import { logger } from '../logger'
 
-const EXPLORER = process.env.NEXT_PUBLIC_EXPLORER_URL
-const VERIFIER_URL = process.env.NEXT_PUBLIC_VERIFIER_URL
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export const PostAuth = () => {
+  const logger = useLogger()
+  const { explorerUrl } = useEnvironment()
   const [error, setError] = useState('')
   const [address, setAddress] = useState('')
   const [messageCid, setMessageCid] = useState('')
@@ -32,8 +34,8 @@ export const PostAuth = () => {
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
-  const messageUrl = `${EXPLORER}/message/?cid=${messageCid}`
-  const addressUrl = `${EXPLORER}/actor/?address=${address}`
+  const messageUrl = `${explorerUrl}/message/?cid=${messageCid}`
+  const addressUrl = `${explorerUrl}/actor/?address=${address}`
   const truncated = truncateAddress(address)
   const allowanceGbBig = allowance / 1073741824n
   const allowanceGbNr = Number(allowanceGbBig)
@@ -59,12 +61,12 @@ export const PostAuth = () => {
       )
       setAddress(pendingVerification.address)
     }
-  }, [confirming, confirm, setConfirming, setError, error])
+  }, [confirming, confirm, setConfirming, setError, error, logger])
 
   const verify = async (jwt, filAddress) => {
     try {
       const res = await axios.post(
-        `${VERIFIER_URL}/verify/${filAddress}`,
+        `${BACKEND_URL}/verify/${filAddress}`,
         {},
         {
           headers: { Authorization: `Bearer ${jwt}` }
