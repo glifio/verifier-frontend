@@ -20,7 +20,7 @@
     "@glif/filecoin-message-confirmer": "^2.0.1",
     "@glif/filecoin-rpc-client": "^2.0.1",
     "@glif/logger": "^2.0.1",
-    "@glif/react-components": "^2.0.0-alpha.155",
+    "@glif/react-components": "^2.0.0-alpha.158",
     "axios": "^0.27.2",
     "dayjs": "^1.11.4",
     "next": "^12.2.3",

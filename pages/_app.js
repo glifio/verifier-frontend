@@ -1,12 +1,7 @@
 import '@glif/base-css'
 import App from 'next/app'
 import Head from 'next/head'
-import {
-  EnvironmentProvider,
-  theme,
-  ThemeProvider,
-  ErrorBoundary
-} from '@glif/react-components'
+import { EnvironmentProvider, ErrorBoundary } from '@glif/react-components'
 import { JwtProvider } from '../lib/JwtHandler'
 import { MessageConfirmerProvider } from '../lib/ConfirmMessage'
 
@@ -50,15 +45,13 @@ class MyApp extends App {
           sentryDsn={process.env.NEXT_PUBLIC_SENTRY_DSN}
           sentryEnv={process.env.NEXT_PUBLIC_SENTRY_ENV}
         >
-          <ThemeProvider theme={theme}>
-            <MessageConfirmerProvider>
-              <JwtProvider>
-                <ErrorBoundary>
-                  <Component {...pageProps} />
-                </ErrorBoundary>
-              </JwtProvider>
-            </MessageConfirmerProvider>
-          </ThemeProvider>
+          <MessageConfirmerProvider>
+            <JwtProvider>
+              <ErrorBoundary>
+                <Component {...pageProps} />
+              </ErrorBoundary>
+            </JwtProvider>
+          </MessageConfirmerProvider>
         </EnvironmentProvider>
       </>
     )
