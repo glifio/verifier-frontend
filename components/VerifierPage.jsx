@@ -1,10 +1,6 @@
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
-import {
-  Page,
-  VerifierIconHeaderFooter,
-  NetworkSelector
-} from '@glif/react-components'
+import { Page, IconVerifier, NetworkSelector } from '@glif/react-components'
 import { GLIF_DISCORD } from '../constants'
 
 export default function VerifierPage({ children, ...rest }) {
@@ -15,7 +11,7 @@ export default function VerifierPage({ children, ...rest }) {
 
   return (
     <Page
-      appIcon={<VerifierIconHeaderFooter />}
+      appIcon={<IconVerifier />}
       appHeaderLinks={[
         {
           title: 'Wallet',

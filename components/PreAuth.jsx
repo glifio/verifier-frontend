@@ -12,7 +12,7 @@ export const PreAuth = () => {
     <>
       <h2>Connect</h2>
       <ButtonV2Link large href={url}>
-        <IconGitHub size={5} />
+        <IconGitHub width='auto' height='1.25em' />
         GitHub
       </ButtonV2Link>
     </>
