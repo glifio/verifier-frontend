@@ -34,8 +34,8 @@ export const PostAuth = () => {
   const { jwt, removeJwt } = useJwt()
   const { confirm } = useMessageConfirmation()
 
-  const messageUrl = `${explorerUrl}/message/?cid=${messageCid}`
-  const addressUrl = `${explorerUrl}/actor/?address=${address}`
+  const messageUrl = `${explorerUrl}/tx/${messageCid}`
+  const addressUrl = `${explorerUrl}/address/${address}`
   const truncated = truncateAddress(address)
   const allowanceGbBig = allowance / 1073741824n
   const allowanceGbNr = Number(allowanceGbBig)

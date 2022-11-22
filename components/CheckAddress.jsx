@@ -28,7 +28,7 @@ export const CheckAddress = () => {
   const [address, setAddress] = useState('')
   const [remainingBytes, setRemainingBytes] = useState(null)
 
-  const addressUrl = `${explorerUrl}/actor/?address=${address}`
+  const addressUrl = `${explorerUrl}/address/${address}`
   const truncated = truncateAddress(address)
 
   const onCheck = async (address) => {
