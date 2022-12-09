@@ -46,7 +46,6 @@ jobs:
       - name: Test
         run: |
           npm run lint
-          npm test
 
       # Create a prerelease tag
       - name: Tag
