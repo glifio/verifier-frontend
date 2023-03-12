@@ -73,7 +73,7 @@ jobs:
           NETWORK_IDENTIFIER: 'mainnet'
           OAUTH_STATE_STRING: 'verifier'
           GITHUB_CLIENT_ID: '8e972b0441d34ebd94a3'
-          GITHUB_REDIRECT_URL: 'https://github-oauth.glif.io/callback'
+          GITHUB_REDIRECT_URL: 'https://verify.glif.io/callback'
 
       - name: Deploy-cloudflare
         run: |
