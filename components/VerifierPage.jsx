@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import { useRouter } from 'next/router'
 import { Page, IconVerifier, NetworkSelector } from '@glif/react-components'
 import { GLIF_DISCORD } from '../constants'
 
