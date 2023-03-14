@@ -4,10 +4,7 @@ import { Page, IconVerifier, NetworkSelector } from '@glif/react-components'
 import { GLIF_DISCORD } from '../constants'
 
 export default function VerifierPage({ children, ...rest }) {
-  const router = useRouter()
-  const onNodeDisconnect = useCallback(() => {
-    navigate(router, { pageUrl: PAGE.NODE_DISCONNECTED })
-  }, [router])
+  const onNodeDisconnect = useCallback(() => {}, [])
 
   return (
     <Page
