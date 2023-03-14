@@ -36,11 +36,11 @@ module.exports = (phase) => ({
       process.env.SAFE_URL || 'https://safe-calibration.glif.link',
     NEXT_PUBLIC_EXPLORER_URL:
       process.env.EXPLORER_URL || 'https://explorer-calibration.glif.link',
-    NEXT_PUBLIC_BACKEND_URL: 'https://mainnet.verify.backend.glif.io',
+    NEXT_PUBLIC_BACKEND_URL: 'http://localhost:8080',
     NEXT_PUBLIC_OAUTH_STATE_STRING:
       process.env.OAUTH_STATE_STRING || 'verifier',
     NEXT_PUBLIC_LOTUS_NODE_JSONRPC:
-      process.env.LOTUS_NODE_JSONRPC || 'https://api.node.glif.io',
+      process.env.LOTUS_NODE_JSONRPC || 'https://api.node.glif.io/rpc/v0',
     NEXT_PUBLIC_NETWORK_IDENTIFIER: process.env.NETWORK_IDENTIFIER || 'mainnet',
     NEXT_PUBLIC_IS_PROD:
       phase === PHASE_PRODUCTION_SERVER || phase === PHASE_PRODUCTION_BUILD,

@@ -58,7 +58,7 @@ jobs:
       - name: Build
         run: npm run export
         env:
-          LOTUS_NODE_JSONRPC: 'https://mainnet.glif.host'
+          LOTUS_NODE_JSONRPC: 'https://api.node.glif.io/rpc/v0'
           GRAPH_API_URL: 'graph.glif.host/query'
           COIN_TYPE: 'f'
           HOME_URL: 'https://apps.glif.io'
